@@ -5,7 +5,7 @@ const authMiddleware = require('../middlewares/authMiddleware'); // 파일이름
 const CommentsController = require('../controllers/comments');
 const commentsController = new CommentsController;
 
-router.post('/:shareId', authMiddleware, commentsController.createComment);
+router.post('/:postId', authMiddleware, commentsController.createComment);
 router.put('/:commentId', authMiddleware, commentsController.updateComment);
 router.delete('/:commentId', authMiddleware, commentsController.deleteComment);
 

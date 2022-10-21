@@ -4,8 +4,8 @@ class CommentsService {
     commentsRepository = new CommentsRepository();
 
     // 댓글 생성
-    createComment = async (userId, shareId, comment) => {
-        return await this.commentsRepository.createComment(userId, shareId, comment);
+    createComment = async (userId, postId, comment) => {
+        return await this.commentsRepository.createComment(userId, postId, comment);
     };
 
     // 댓글 수정

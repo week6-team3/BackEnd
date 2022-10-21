@@ -7,16 +7,17 @@ class CommentsController {
     createComment = async (req, res) => {
         try {
             const { userId } = res.locals;
-            const { shareId } = req.params;
+            const { postId } = req.params;
             const { comment } = req.body;
 
-            const commentId =  await this.commentsService.createComment(userId, shareId, comment);
+            const commentId =  await this.commentsService.createComment(userId, postId, comment);
 
-            const createResult = { commentId, userId, shareId, comment };
-            
+            const createResult = { commentId, userId, postId, comment };
+
             res.status(201).json({ result: createResult, message: "댓글을 생성하였습니다."});
         } catch(err) {
-            res.status(400).send(err);
+            console.log(err);
+            return { errorMessage: err.message };
         }
     };
 
@@ -30,7 +31,8 @@ class CommentsController {
 
             res.status(200).json({ result: updateResult, message: "댓글을 수정하였습니다."});
         } catch(err) {
-            res.status(400).send(err);
+            console.log(err);
+            return { errorMessage: err.message };
         }
     };
 
@@ -43,7 +45,8 @@ class CommentsController {
 
             res.status(200).json({ result: deleteResult, message: "댓글을 삭제하였습니다."})
         } catch(err) {
-            res.status(400).send(err);
+            console.log(err);
+            return { errorMessage: err.message };
         }
     };
 }

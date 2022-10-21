@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       /** 
        * this.belongsTo(models.Users, { foreignKey: 'userId' });
-       * this.belongsTo(models.Share, { foreignKey: 'shareId' });
+       * this.belongsTo(models.Posts, { foreignKey: 'postId' });
        * this.belongsTo(models.Contents, { foreignKey: 'contentId' });
        */
     }
@@ -33,11 +33,11 @@ module.exports = (sequelize, DataTypes) => {
       // },
       type: DataTypes.INTEGER
     },
-    shareId: {
+    postId: {
       allowNull: false,
       // reference: {
-      //   model: 'Share',
-      //   key: 'shareId'
+      //   model: 'Posts',
+      //   key: 'postId'
       // },
       type: DataTypes.INTEGER
     },

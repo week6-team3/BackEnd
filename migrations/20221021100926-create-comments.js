@@ -17,11 +17,11 @@ module.exports = {
         // },
         type: Sequelize.INTEGER
       },
-      shareId: {
+      postId: {
         allowNull: false,
         // reference: {
-        //   model: 'Share',
-        //   key: 'shareId'
+        //   model: 'Posts',
+        //   key: 'postId'
         // },
         type: Sequelize.INTEGER
       },
