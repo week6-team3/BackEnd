@@ -1,5 +1,4 @@
 const PostRepository = require('../repositories/posts.repository');
-const { post } = require('../routes');
 
 class PostService {
   postRepository = new PostRepository();
