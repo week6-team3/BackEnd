@@ -23,7 +23,7 @@ class PostRepository {
 
   // 3. 게시글 작성
   createPost = async (userId, title, content, where) => {
-    const createPost = await Posts.create(userId, title, content, where);
+    const newPost = await Posts.create(userId, title, content, where);
     return newPost;
   };
 
