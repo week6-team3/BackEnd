@@ -1,9 +1,8 @@
 const express = require('express');
 const router = express.Router();
 
-// const naverUsersRouter = require('./naver-users.route.js');
+const commentsRouter = require('./comments.js');
 
-// router.use('/users', [naverUsersRouter]);
-
+router.use('/comments', commentsRouter);
 
 module.exports = router;

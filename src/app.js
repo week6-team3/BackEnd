@@ -8,7 +8,7 @@ const app = express();
 const PORT = 3016;
 
 app.use(express.json()); // body-parser 전역 미들웨어
-app.use('/api', routes); // 라우터 등록
+app.use('/', routes); // 라우터 등록
 app.use(errorLogger); // Error Logger
 app.use(errorHandler); // Error Handler
 

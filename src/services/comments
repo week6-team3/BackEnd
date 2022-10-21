@@ -1,0 +1,22 @@
+const CommentsRepository = require('../repositories/comments');
+
+class CommentsService {
+    commentsRepository = new CommentsRepository();
+
+    // 댓글 생성
+    createComment = async (userId, shareId, comment) => {
+        return await this.commentsRepository.createComment(userId, shareId, comment);
+    };
+
+    // 댓글 수정
+    updateComment = async (commentId, comment) => {
+        return await this.commentsRepository.updateComment(commentId, comment);
+    };
+
+    // 댓글 삭제
+    deleteComment = async (commentId) => {
+        return await this.commentsRepository.deleteComment(commentId);
+    };
+}
+
+module.exports = CommentsService;
