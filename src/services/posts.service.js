@@ -5,14 +5,14 @@ class PostService {
   postRepository = new PostRepository();
 
   // 1. 내가 작성한 게시글 조회
-  findMyPosts = async (userId, nickname) => {
+  findMyPosts = async (userId) => {
     try {
       const myPosts = await this.postRepository.findMyPosts(userId);
       if (!myPosts) return;
 
       const myAllPosts = myPosts.map((post) => {
         return {
-          nickname: nickname,
+          nickname: post.User.nickname,
           postId: post.postId,
           title: post.title,
           content: post.content,
@@ -52,12 +52,13 @@ class PostService {
   };
 
   // 3. 게시글 작성
-  createPost = async (userId, nickname, title, content, where) => {
+  createPost = async (userId, title, content, where) => {
     try {
-      const newPost = await this.postRepository.createPost(userId, title, content, where);
+      const createPost = await this.postRepository.createPost(userId, title, content, where);
+      const newPost = await this.postRepository.findOnePost(createPost.postId);
       return {
         postId: newPost.postId,
-        nickname: nickname,
+        nickname: newPost.User.nickname,
         content: newPost.content,
       };
     } catch (error) {

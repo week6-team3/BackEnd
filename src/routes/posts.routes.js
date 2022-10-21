@@ -5,22 +5,18 @@ const PostsController = require('../controllers/posts.controller');
 const postsController = new PostsController();
 
 // 1. 내가 작성한 게시글 조회
-// router.get('/', authMiddleware, postsController.findMyPosts);
-router.get('/', postsController.findMyPosts);
+router.get('/', authMiddleware, postsController.findMyPosts);
 
 // 2. 내가 작성한 게시글 상세 조회
 router.get('/:postId', postsController.fineOnePost);
 
 // 3. 게시글 작성
-// router.post('/', authMiddleware, postsController.createPost);
-router.post('/', postsController.createPost);
+router.post('/', authMiddleware, postsController.createPost);
 
 // 4. 게시글 수정
-// router.put('/', authMiddleware, postsController.updatePost);
-router.put('/', postsController.updatePost);
+router.put('/', authMiddleware, postsController.updatePost);
 
 // 5. 게시글 삭제
-// router.delete('/', authMiddleware, postsController.deletePost);
-router.delete('/', postsController.deletePost);
+router.delete('/', authMiddleware, postsController.deletePost);
 
 module.exports = router;

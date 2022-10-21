@@ -5,15 +5,9 @@ class PostController {
 
   // 1. 내가 작성한 게시글 조회
   findMyPosts = async (req, res) => {
-    // const {user} = res.locals;
-    user = {
-      userId: '1',
-      nickname: 'test1',
-      email: 'test1@test.com',
-      password: 'pw11',
-    };
+    const userId = res.locals.user;
 
-    const myPosts = await this.postService.findMyPosts(user.userId, user.nickname);
+    const myPosts = await this.postService.findMyPosts(userId);
     res.status(200).send({ data: myPosts });
   };
 
@@ -33,15 +27,9 @@ class PostController {
     if (!title || !content) {
       res.status(400).send({ msg: '게시글 내용을 작성해주세요' });
     }
-    // const {user} = res.locals;
-    user = {
-      userId: '1',
-      nickname: 'test1',
-      email: 'test1@test.com',
-      password: 'pw11',
-    };
+    const userId = res.locals.user;
 
-    const newPost = await this.postService.createPost(userId, nickname, title, content, where);
+    const newPost = await this.postService.createPost(userId, title, content, where);
     return newPost;
   };
 
@@ -55,13 +43,7 @@ class PostController {
       res.status(400).send({ msg: '게시글 내용을 작성해주세요' });
     }
 
-    // const {user} = res.locals;
-    user = {
-      userId: '1',
-      nickname: 'test1',
-      email: 'test1@test.com',
-      password: 'pw11',
-    };
+    const userId = res.locals.user;
 
     const updatePost = await this.postService.updatePost(userId, postId, title, content);
     return updatePost;
@@ -72,13 +54,7 @@ class PostController {
     const { postId } = req.params;
     // if (typeof (postId / 1) === NaN || postId.search(/\s/) != -1) throw new Error('postId를 잘못 입력하였습니다.');
 
-    // const {user} = res.locals;
-    user = {
-      userId: '1',
-      nickname: 'test1',
-      email: 'test1@test.com',
-      password: 'pw11',
-    };
+    const userId = res.locals.user;
 
     const deletePost = await this.postService.deletePost(userId, postId);
     return deletePost;

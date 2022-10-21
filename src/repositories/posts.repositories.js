@@ -1,10 +1,11 @@
-const { Posts } = require('../../models');
+const { Users, Posts } = require('../../models');
 
 class PostRepository {
   // 1. 내가 작성한 게시글 조회
   findMyPosts = async (userId) => {
     const myPosts = await Posts.findAll({
       where: { userId },
+      include: [{ model: Users, attributes: ['nickname'] }],
       order: [['createdAt', 'DESC']],
     });
     return myPosts;
@@ -12,13 +13,17 @@ class PostRepository {
 
   // 2. 게시글 상세 조회
   findOndPost = async (postId) => {
-    const myOnePost = await Posts.findByPk(postId);
+    const myOnePost = await Posts.findOne({
+      where: { postId },
+      include: [{ model: Users, attributes: ['nickname'] }],
+      order: [['createdAt', 'DESC']],
+    });
     return myOnePost;
   };
 
   // 3. 게시글 작성
   createPost = async (userId, title, content, where) => {
-    const newPost = await Posts.create(userId, title, content, where);
+    const createPost = await Posts.create(userId, title, content, where);
     return newPost;
   };
 
