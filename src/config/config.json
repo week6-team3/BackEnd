@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "root",
+    "password": "1234",
+    "database": "layered_architecture_pattern_by_naver",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "test": {
+    "username": "root",
+    "password": "1234",
+    "database": "layered_architecture_pattern_test_by_naver",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "root",
+    "password": null,
+    "database": "database_production",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  }
+}
