@@ -1,9 +1,10 @@
 {
   "name": "week6",
   "version": "1.0.0",
-  "description": "",
+  "description": "화이팅!!!!!!!!!!!!!!!!!!!!!!!!!! 화이팅~!~!~!~!",
   "main": "index.js",
   "scripts": {
+    "start": "nodemon src/app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -21,7 +22,16 @@
     "mysql2": "^2.3.3",
     "sequelize": "^6.25.3"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/week6-team3/BackEnd.git"
+  },
+  "bugs": {
+    "url": "https://github.com/week6-team3/BackEnd/issues"
+  },
+  "homepage": "https://github.com/week6-team3/BackEnd#readme",
   "devDependencies": {
+    "nodemon": "^2.0.20",
     "sequelize-cli": "^6.5.1"
   }
 }

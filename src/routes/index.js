@@ -1,12 +1,11 @@
 const express = require('express');
 const router = express.Router();
 
-
 // Routes
 const userRouter = require('./users');
-// const naverUsersRouter = require('./naver-users.route.js');
+const postsRouter = require('./posts.routes');
 
-// router.use('/users', [naverUsersRouter]);
 router.use('/',userRouter);
+router.use('/', postsRouter);
 
 module.exports = router;
