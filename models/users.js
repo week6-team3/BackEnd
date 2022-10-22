@@ -10,13 +10,55 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      // 다른 테이블 모델이 없어서 일단 주석입니다 !! 
+      // this.hasMany(models.Posts,{
+      //   as:"Posts",
+      //   foreignKey:"userId",
+      // });
+
+      // this.hasMany(models.Likes,{
+      //   as:"Likes",
+      //   foreignKey:"userId",
+      // });
+
+      // this.hasMany(models.Comments,{
+      //   as:"Comments",
+      //   foreignKey:"userId",
+      // });
     }
   }
   Users.init({
-    nickname: DataTypes.STRING,
-    password: DataTypes.STRING,
-    refreshToken: DataTypes.STRING
+    userId: {
+        allowNull: false,
+        autoIncrement: true,
+        primaryKey: true,
+        type: DataTypes.INTEGER
+      },
+      nickname: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        unique:true
+      },
+      password: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      email: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        unique:true
+      },
+      refreshToken: {
+        type: DataTypes.STRING,
+      },
+      createdAt: {
+        allowNull: false,
+        type: DataTypes.DATE
+      },
+      updatedAt: {
+        allowNull: false,
+        type: DataTypes.DATE
+      }
   }, {
     sequelize,
     modelName: 'Users',
