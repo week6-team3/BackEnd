@@ -20,19 +20,24 @@ class PostRepository {
   findOnePost = async (postId) => {
     const myOnePost = await Posts.findOne({
       where: { postId },
-      include: [{ model: Users }],
+      include: [
+        {
+          model: Users,
+          attributes: ['nickname', 'email'],
+        },
+      ],
     });
     return myOnePost;
   };
 
   // 3. 게시글 작성
-  createPost = async (userId, title, travel, completion) => {
+  createPost = async (userId, title, travel) => {
     const newPost = await Posts.create({
       userId,
       title,
       travel,
-      completion,
     });
+    console.log(newPost.postId);
     return newPost;
   };
 

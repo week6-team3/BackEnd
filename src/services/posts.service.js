@@ -3,24 +3,29 @@ const PostRepository = require('../repositories/posts.repository');
 class PostService {
   postRepository = new PostRepository();
 
-  // 1. 내가 작성한 게시글 조회
+  // 1. 내가 작성한 게시글 조회 // 체크리스트 추가해야 함.
   findMyPosts = async (userId) => {
     try {
       const myPosts = await this.postRepository.findMyPosts(userId);
       if (!myPosts) throw new Error('작성한 게시글이 없습니다.');
-      // const myAllPosts = myPosts.map((post) => {
-      //   return {
-      //     nickname: post.User.nickname,
-      //     postId: post.postId,
-      //     title: post.title,
-      //     liksCount: post.like,
-      //     createdAt: post.createdAt,
-      //     updatedAt: post.updatedAt,
-      //   };
-      // });
 
-      // 체크리스트 추가해야 함. 가공 전 상태 (보낼 데이터 선정되면 가공하기)
-      return myPosts;
+      const myAllPosts = myPosts.map((post) => {
+        return {
+          postId: post.postId,
+          userId: post.userId,
+          nickname: post.User.nickname,
+          email: post.User.email,
+          title: post.title,
+          likeCount: post.likeCount,
+          travel: post.travel,
+          completion: post.completion,
+          sharing: post.sharing,
+          createdAt: post.createdAt,
+          updatedAt: post.updatedAt,
+        };
+      });
+
+      return myAllPosts;
     } catch (error) {
       console.log(error);
       return { errorMessage: error.message };
@@ -39,10 +44,12 @@ class PostService {
         postId: existPost.postId,
         userId: existPost.userId,
         nickname: existPost.User.nickname,
+        email: existPost.User.email,
         title: existPost.title,
+        likeCount: existPost.likeCount,
         travel: existPost.travel,
         completion: existPost.completion,
-        likeCount: existPost.likeCount,
+        sharing: existPost.sharing,
         createdAt: existPost.createdAt,
         updatedAt: existPost.updatedAt,
       };
@@ -56,15 +63,22 @@ class PostService {
   createPost = async (userId, title, travel, completion) => {
     try {
       const createPost = await this.postRepository.createPost(userId, title, travel, completion);
+      const newPost = await this.postRepository.findOnePost(createPost.postId);
 
-      return createPost;
-      // return {
-      //   postId: newPost.postId,
-      //   nickname: newPost.User.nickname,
-      //   title: newPost.title,
-      //   where: newPost.where,
-      //   completion: newPost.completion,
-      // };
+      // return newPost;
+      return {
+        postId: newPost.postId,
+        userId: newPost.userId,
+        nickname: newPost.User.nickname,
+        email: newPost.User.email,
+        title: newPost.title,
+        likeCount: newPost.likeCount,
+        travel: newPost.travel,
+        completion: newPost.completion,
+        sharing: newPost.sharing,
+        createdAt: newPost.createdAt,
+        updatedAt: newPost.updatedAt,
+      };
     } catch (error) {
       console.log(error);
       return { errorMessage: error.message };

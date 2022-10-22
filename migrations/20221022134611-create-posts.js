@@ -25,6 +25,7 @@ module.exports = {
       completion: {
         allowNull: false,
         type: Sequelize.STRING,
+        defaultValue: 'false',
       },
       sharing: {
         allowNull: false,

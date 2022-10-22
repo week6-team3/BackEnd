@@ -5,7 +5,6 @@ class SharingController {
 
   // 1. 공유된 게시글 전체 조회
   getSharedPosts = async (req, res) => {
-    console.log('test1');
     const sharedPosts = await this.sharingService.findSharedPosts();
     res.status(200).send(sharedPosts);
   };
