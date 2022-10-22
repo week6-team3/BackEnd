@@ -36,7 +36,7 @@ module.exports = {
         type: Sequelize.INTEGER,
         defaultValue: 0,
       },
-      where: {
+      travel: {
         allowNull: false,
         type: Sequelize.STRING,
       },

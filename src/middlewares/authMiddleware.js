@@ -10,8 +10,9 @@ module.exports = async (req, res, next) => {
     let userId;
     // AccessToken 만료 여부 확인
     let result = await jwtService.validateAccessToken(accessToken.split(' ')[1]);
-    userId = result.id;
+    userId = result.userId;
     // AccessToken 만료 시 RefreshToken을 검증하여 AccessToken 재발급
+
     if (!result) {
       console.log('AccessToken 만료, 재발급 시작');
       const refreshToken = req.cookies['RefreshToken'];
@@ -32,8 +33,8 @@ module.exports = async (req, res, next) => {
       }
 
       // AccessToken 재발급
-      const newAccessToken = await jwtService.createAccessToken(result.id);
-      userId = result.id;
+      const newAccessToken = await jwtService.createAccessToken(result.userId);
+      userId = result.userId;
 
       // accessToken 쿠키 재생성
       res.cookie('AccessToken', `Bearer ${newAccessToken}`, {

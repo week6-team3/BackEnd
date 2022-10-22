@@ -9,7 +9,7 @@ class PostRepository {
       include: [
         {
           model: Users,
-          attributes: ['nickname'],
+          attributes: ['nickname', 'email'],
         },
       ],
     });
@@ -27,22 +27,21 @@ class PostRepository {
   };
 
   // 3. 게시글 작성
-  createPost = async (userId, title, where, completion) => {
+  createPost = async (userId, title, travel, completion) => {
     const newPost = await Posts.create({
       userId,
       title,
-      where,
+      travel,
       completion,
     });
-    console.log('테스트3');
     return newPost;
   };
 
   // 4. 게시글 수정
-  updatePost = async (postId, title, content, where) => {
-    const updatePost = await Posts.update({ title, content, where }, { where: { postId } });
-    return updatePost;
-  };
+  // updatePost = async (postId, title, content, where) => {
+  //   const updatePost = await Posts.update({ title, content, where }, { where: { postId } });
+  //   return updatePost;
+  // };
 
   // 5. 게시글 삭제
   deletePost = async (postId) => {

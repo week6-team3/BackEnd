@@ -7,20 +7,20 @@ class PostService {
   findMyPosts = async (userId) => {
     try {
       const myPosts = await this.postRepository.findMyPosts(userId);
-      if (!myPosts) return;
+      if (!myPosts) throw new Error('작성한 게시글이 없습니다.');
+      // const myAllPosts = myPosts.map((post) => {
+      //   return {
+      //     nickname: post.User.nickname,
+      //     postId: post.postId,
+      //     title: post.title,
+      //     liksCount: post.like,
+      //     createdAt: post.createdAt,
+      //     updatedAt: post.updatedAt,
+      //   };
+      // });
 
-      const myAllPosts = myPosts.map((post) => {
-        return {
-          nickname: post.User.nickname,
-          postId: post.postId,
-          title: post.title,
-          content: post.content,
-          liksCount: post.like,
-          createdAt: post.createdAt,
-          updatedAt: post.updatedAt,
-        };
-      });
-      return myAllPosts;
+      // 체크리스트 추가해야 함. 가공 전 상태 (보낼 데이터 선정되면 가공하기)
+      return myPosts;
     } catch (error) {
       console.log(error);
       return { errorMessage: error.message };
@@ -33,12 +33,13 @@ class PostService {
       // 에러 없이 로그인 여부 확인하고 싶은데...
       const existPost = await this.postRepository.findOnePost(postId);
       if (!existPost) throw new Error('존재하지 않는 게시글입니다.');
+      // return existPost;
 
       return {
         nickname: existPost.User.nickname,
         postId: existPost.postId,
         title: existPost.title,
-        where: existPost.where,
+        travel: existPost.travel,
         completion: existPost.completion,
         likeCount: existPost.likeCount,
         createdAt: existPost.createdAt,
@@ -51,12 +52,10 @@ class PostService {
   };
 
   // 3. 게시글 작성
-  createPost = async (userId, title, where, completion) => {
+  createPost = async (userId, title, travel, completion) => {
     try {
-      const createPost = await this.postRepository.createPost(userId, title, where, completion);
-      // const newPost = await this.postRepository.findOnePost(createPost.postId);
-      // console.log(newPost.postId, newPost.title, newPost.where, newPost.completion);
-      console.log('테스트1');
+      const createPost = await this.postRepository.createPost(userId, title, travel, completion);
+
       return createPost;
       // return {
       //   postId: newPost.postId,
@@ -65,21 +64,6 @@ class PostService {
       //   where: newPost.where,
       //   completion: newPost.completion,
       // };
-    } catch (error) {
-      console.log(error);
-      return { errorMessage: error.message };
-    }
-  };
-
-  // 4. 게시글 수정
-  upeatePost = async (userId, postId, title, content, where) => {
-    try {
-      const existPost = await this.postRepository.findOnePost(postId);
-      if (!existPost) throw new Error('존재하지 않는 게시글입니다.');
-      if (existPost.userId !== userId) throw new Error('작성자 본인만 수정할 수 있습니다.');
-
-      const updatePost = await this.postRepository.updatePost(postId, title, content, where);
-      return updatePost;
     } catch (error) {
       console.log(error);
       return { errorMessage: error.message };

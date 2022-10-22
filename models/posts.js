@@ -46,7 +46,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
         defaultValue: 0,
       },
-      where: {
+      travel: {
         allowNull: false,
         type: DataTypes.STRING,
       },

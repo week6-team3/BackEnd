@@ -5,7 +5,7 @@ class PostController {
 
   // 1. 내가 작성한 게시글 조회
   findMyPosts = async (req, res) => {
-    const userId = res.locals.user;
+    const { userId } = res.locals.user;
 
     const myPosts = await this.postService.findMyPosts(userId);
     res.status(200).send({ data: myPosts });
@@ -14,7 +14,7 @@ class PostController {
   // 2. 내가 작성한 게시글 상세 조회
   fineOnePost = async (req, res) => {
     const { postId } = req.params;
-    // if (typeof (postId / 1) === NaN || postId.search(/\s/) != -1) throw new Error('postId를 잘못 입력하였습니다.');
+    if (typeof (postId / 1) === NaN || postId.search(/\s/) != -1) throw new Error('postId가 잘못되었습니다.');
 
     const myOnePost = await this.postService.findOnePost(postId);
 
@@ -23,30 +23,14 @@ class PostController {
 
   // 3. 게시글 작성
   createPost = async (req, res) => {
-    const { title, where, completion } = req.body;
-    if (!title || !where || !completion) {
-      res.status(400).send({ msg: '게시글 제목을 작성해주세요' });
-    }
-    const { userId } = res.locals.user;
+    const { title, travel, completion } = req.body;
+    if (!title) res.status(400).send({ message: '제목을 입력해주세요.' });
+    if (!travel) res.status(400).send({ message: '여행장소(국내/해외)를 선택해주세요.' });
+    if (!completion) res.status(400).send({ message: '완료여부를 선택해주세요' });
 
-    const newPost = await this.postService.createPost(userId, title, where, completion);
+    const { userId } = res.locals.user;
+    const newPost = await this.postService.createPost(userId, title, travel, completion);
     res.status(201).send(newPost);
-  };
-
-  // 4. 게시글 수정
-  updatePost = async (req, res) => {
-    const { postId } = req.params;
-    // if (typeof (postId / 1) === NaN || postId.search(/\s/) != -1) throw new Error('postId를 잘못 입력하였습니다.');
-
-    const { title, content } = req.body;
-    if (!title || !content) {
-      res.status(400).send({ msg: '게시글 내용을 작성해주세요' });
-    }
-
-    const { userId } = res.locals.user;
-
-    const updatePost = await this.postService.updatePost(userId, postId, title, content);
-    return updatePost;
   };
 
   // 5. 게시글 삭제
