@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
       /** 
        * this.belongsTo(models.Users, { foreignKey: 'userId' });
        * this.belongsTo(models.Posts, { foreignKey: 'postId' });
-       * this.belongsTo(models.Contents, { foreignKey: 'contentId' });
+       * this.belongsTo(models.Checklist, { foreignKey: 'checklistId' });
        */
     }
   }
@@ -41,14 +41,6 @@ module.exports = (sequelize, DataTypes) => {
       // },
       type: DataTypes.INTEGER
     },
-    contentId: {
-      allowNull: false,
-      // reference: {
-      //   model: 'Contents',
-      //   key: 'contentId'
-      // },
-      type: DataTypes.INTEGER
-    },
     comment: {
       allowNull: false,
       type: DataTypes.STRING
@@ -62,9 +54,6 @@ module.exports = (sequelize, DataTypes) => {
       defaultValue: DataTypes.NOW,
       allowNull: false,
       type: DataTypes.DATE
-    },
-    refreshToken: {
-      type: DataTypes.STRING
     },
   }, {
     timestamps: false,

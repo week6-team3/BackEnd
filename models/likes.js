@@ -11,13 +11,44 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      /** 
+       * this.belongsTo(models.Users, { foreignKey: 'userId' });
+       * this.belongsTo(models.Posts, { foreignKey: 'postId' });
+       */
     }
   }
   Likes.init({
-    nickname: DataTypes.STRING,
-    password: DataTypes.STRING,
-    refreshToken: DataTypes.STRING
+    likeId: {
+    allowNull: false,
+    autoIncrement: true,
+    primaryKey: true,
+    type: DataTypes.INTEGER,
+  },
+  userId: {
+    // reference: {
+    //   model: 'Users',
+    //   key: 'userId'
+    // },
+    allowNull: false,
+    type: DataTypes.INTEGER,
+    onDelete: 'cascade', // 부모 데이터가 사라지면 같이 삭제
+  },
+  postId: {
+    // reference: {
+    //   model: 'Posts',
+    //   key: 'postId'
+    // },
+    allowNull: false,
+    type: DataTypes.INTEGER,
+    onDelete: 'cascade', // 부모 데이터가 사라지면 같이 삭제
+  },
+  createdAt: {
+    allowNull: false,
+    defaultValue: DataTypes.NOW,
+    type: DataTypes.DATE,
+  }
   }, {
+    timestamps: false,
     sequelize,
     modelName: 'Likes',
   });

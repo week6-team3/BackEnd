@@ -3,28 +3,34 @@
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('Likes', {
-      id: {
+      likeId: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      nickname: {
-        type: Sequelize.STRING
+      userId: {
+        // reference: {
+        //   model: 'Users',
+        //   key: 'userId'
+        // },
+        allowNull: false,
+        type: Sequelize.INTEGER,
+        onDelete: 'cascade', // 부모 데이터가 사라지면 같이 삭제
       },
-      password: {
-        type: Sequelize.STRING
-      },
-      refreshToken: {
-        type: Sequelize.STRING
+      postId: {
+        // reference: {
+        //   model: 'Posts',
+        //   key: 'postId'
+        // },
+        allowNull: false,
+        type: Sequelize.INTEGER,
+        onDelete: 'cascade', // 부모 데이터가 사라지면 같이 삭제
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE
-      },
-      updatedAt: {
-        allowNull: false,
-        type: Sequelize.DATE
+        defaultValue: Sequelize.NOW,
+        type: Sequelize.DATE,
       }
     });
   },

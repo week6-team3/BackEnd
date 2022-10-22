@@ -1,20 +1,20 @@
-const CommentsService = require('../services/comments');
+const CommentService = require('../services/comments.service');
 
-class CommentsController {
-    commentsService = new CommentsService();
+class CommentController {
+    commentService = new CommentService();
 
     // 댓글 생성
     createComment = async (req, res) => {
         try {
-            const { userId } = res.locals;
+            const { userId } = res.locals.user;
             const { postId } = req.params;
             const { comment } = req.body;
 
-            const commentId =  await this.commentsService.createComment(userId, postId, comment);
+            const createResult =  await this.commentService.createComment(userId, postId, comment);
 
-            const createResult = { commentId, userId, postId, comment };
+            // const createResult = { commentId, userId, postId, comment };
 
-            res.status(201).json({ result: createResult, message: "댓글을 생성하였습니다."});
+            res.status(201).json({ result: createResult, message: "댓글을 작성하였습니다."});
         } catch(err) {
             console.log(err);
             return { errorMessage: err.message };
@@ -27,7 +27,7 @@ class CommentsController {
             const { commentId } = req.params;
             const { comment } = req.body;
 
-            const updateResult = await this.commentsService.updateComment(commentId, comment);
+            const updateResult = await this.commentService.updateComment(commentId, comment);
 
             res.status(200).json({ result: updateResult, message: "댓글을 수정하였습니다."});
         } catch(err) {
@@ -41,7 +41,7 @@ class CommentsController {
         try {
             const { commentId } = req.params;
 
-            const deleteResult = await this.commentsService.deleteComment(commentId);
+            const deleteResult = await this.commentService.deleteComment(commentId);
 
             res.status(200).json({ result: deleteResult, message: "댓글을 삭제하였습니다."})
         } catch(err) {
@@ -51,4 +51,4 @@ class CommentsController {
     };
 }
 
-module.exports = CommentsController;
+module.exports = CommentController;
