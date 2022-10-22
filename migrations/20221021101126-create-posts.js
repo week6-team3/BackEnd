@@ -10,6 +10,7 @@ module.exports = {
         type: Sequelize.INTEGER,
       },
       userId: {
+        allowNull: false,
         type: Sequelize.INTEGER,
         references: {
           model: 'Users',
@@ -17,39 +18,37 @@ module.exports = {
         },
         onDelete: 'cascade',
       },
-      checklistId: {
-        type: Sequelize.INTEGER,
-      },
       title: {
-        type: Sequelize.STRING,
-      },
-      content: {
+        allowNull: false,
         type: Sequelize.STRING,
       },
       completion: {
-        type: Sequelize.INTEGER,
-        defalutValue: 0,
+        allowNull: false,
+        type: Sequelize.STRING,
       },
       sharing: {
-        type: Sequelize.INTEGER,
-        defalutValue: 0,
+        allowNull: false,
+        type: Sequelize.STRING,
+        defaultValue: 'false',
       },
-      like: {
+      likeCount: {
+        allowNull: false,
         type: Sequelize.INTEGER,
-        defalutValue: 0,
+        defaultValue: 0,
       },
       where: {
-        type: Sequelize.INTEGER,
+        allowNull: false,
+        type: Sequelize.STRING,
       },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
-        defalutValue: Sequelize.NOW,
+        defaultValue: Sequelize.NOW,
       },
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE,
-        defalutValue: Sequelize.NOW,
+        defaultValue: Sequelize.NOW,
       },
     });
   },

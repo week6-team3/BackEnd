@@ -5,14 +5,19 @@ class PostRepository {
   findMyPosts = async (userId) => {
     const myPosts = await Posts.findAll({
       where: { userId },
-      include: [{ model: Users, attributes: ['nickname'] }],
       order: [['createdAt', 'DESC']],
+      include: [
+        {
+          model: Users,
+          attributes: ['nickname'],
+        },
+      ],
     });
     return myPosts;
   };
 
   // 2. 게시글 상세 조회
-  findOndPost = async (postId) => {
+  findOnePost = async (postId) => {
     const myOnePost = await Posts.findOne({
       where: { postId },
       include: [{ model: Users, attributes: ['nickname'] }],
@@ -22,8 +27,14 @@ class PostRepository {
   };
 
   // 3. 게시글 작성
-  createPost = async (userId, title, content, where) => {
-    const newPost = await Posts.create(userId, title, content, where);
+  createPost = async (userId, title, where, completion) => {
+    const newPost = await Posts.create({
+      userId,
+      title,
+      where,
+      completion,
+    });
+    console.log('테스트3');
     return newPost;
   };
 

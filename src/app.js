@@ -1,11 +1,11 @@
 const express = require('express');
-const routes = require('./routes');
+const indexRouter = require('./routes/index');
 const { errorHandler, errorLogger } = require('./middlewares/error-hander.middleware');
 const app = express();
 const PORT = 3016;
 
 app.use(express.json()); // body-parser 전역 미들웨어
-app.use('/', routes); // 라우터 등록
+app.use('/', indexRouter); // 라우터 등록
 app.use(errorLogger); // Error Logger
 app.use(errorHandler); // Error Handler
 

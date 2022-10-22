@@ -7,6 +7,8 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'userId',
         sourceKey: 'userId',
       });
+      // this.hasMany(models.Comments, { foreignKey: 'commentId', sourceKey: 'commentId' });
+      // this.hasMany(models.Checklists, { foreignKey: 'checklistId', sourceKey: 'checklistId' });
     }
   }
   Posts.init(
@@ -18,6 +20,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
       },
       userId: {
+        allowNull: false,
         type: DataTypes.INTEGER,
         references: {
           model: 'Users',
@@ -25,39 +28,37 @@ module.exports = (sequelize, DataTypes) => {
         },
         onDelete: 'cascade',
       },
-      checklistId: {
-        type: DataTypes.INTEGER,
-      },
       title: {
-        type: DataTypes.STRING,
-      },
-      content: {
+        allowNull: false,
         type: DataTypes.STRING,
       },
       completion: {
-        type: DataTypes.INTEGER,
-        defalutValue: 0,
+        allowNull: false,
+        type: DataTypes.STRING,
       },
       sharing: {
-        type: DataTypes.INTEGER,
-        defalutValue: 0,
+        allowNull: false,
+        type: DataTypes.STRING,
+        defaultValue: 'false',
       },
-      like: {
+      likeCount: {
+        allowNull: false,
         type: DataTypes.INTEGER,
-        defalutValue: 0,
+        defaultValue: 0,
       },
       where: {
-        type: DataTypes.INTEGER,
+        allowNull: false,
+        type: DataTypes.STRING,
       },
       createdAt: {
         allowNull: false,
         type: DataTypes.DATE,
-        defalutValue: DataTypes.NOW,
+        defaultValue: DataTypes.NOW,
       },
       updatedAt: {
         allowNull: false,
         type: DataTypes.DATE,
-        defalutValue: DataTypes.NOW,
+        defaultValue: DataTypes.NOW,
       },
     },
     {

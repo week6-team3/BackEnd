@@ -23,14 +23,15 @@ class PostController {
 
   // 3. 게시글 작성
   createPost = async (req, res) => {
-    const { title, content, where } = req.body;
-    if (!title || !content) {
-      res.status(400).send({ msg: '게시글 내용을 작성해주세요' });
+    const { title, where, completion } = req.body;
+    if (!title || !where || !completion) {
+      res.status(400).send({ msg: '게시글 제목을 작성해주세요' });
     }
-    const userId = res.locals.user;
+    const { userId } = res.locals.user;
 
-    const newPost = await this.postService.createPost(userId, title, content, where);
-    return newPost;
+    const newPost = await this.postService.createPost(userId, title, where, completion);
+    console.log('테스트2');
+    res.status(201).send(newPost);
   };
 
   // 4. 게시글 수정
@@ -43,7 +44,7 @@ class PostController {
       res.status(400).send({ msg: '게시글 내용을 작성해주세요' });
     }
 
-    const userId = res.locals.user;
+    const { userId } = res.locals.user;
 
     const updatePost = await this.postService.updatePost(userId, postId, title, content);
     return updatePost;
@@ -54,7 +55,7 @@ class PostController {
     const { postId } = req.params;
     // if (typeof (postId / 1) === NaN || postId.search(/\s/) != -1) throw new Error('postId를 잘못 입력하였습니다.');
 
-    const userId = res.locals.user;
+    const { userId } = res.locals.user;
 
     const deletePost = await this.postService.deletePost(userId, postId);
     return deletePost;

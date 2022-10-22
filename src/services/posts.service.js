@@ -35,14 +35,14 @@ class PostService {
       if (!existPost) throw new Error('존재하지 않는 게시글입니다.');
 
       return {
-        nickname: post.User.nickname,
-        postId: post.postId,
-        where: post.where,
-        title: post.title,
-        content: post.content,
-        liksCount: post.like,
-        createdAt: post.createdAt,
-        updatedAt: post.updatedAt,
+        nickname: existPost.User.nickname,
+        postId: existPost.postId,
+        title: existPost.title,
+        where: existPost.where,
+        completion: existPost.completion,
+        likeCount: existPost.likeCount,
+        createdAt: existPost.createdAt,
+        updatedAt: existPost.updatedAt,
       };
     } catch (error) {
       console.log(error);
@@ -51,15 +51,20 @@ class PostService {
   };
 
   // 3. 게시글 작성
-  createPost = async (userId, title, content, where) => {
+  createPost = async (userId, title, where, completion) => {
     try {
-      const createPost = await this.postRepository.createPost(userId, title, content, where);
-      const newPost = await this.postRepository.findOnePost(createPost.postId);
-      return {
-        postId: newPost.postId,
-        nickname: newPost.User.nickname,
-        content: newPost.content,
-      };
+      const createPost = await this.postRepository.createPost(userId, title, where, completion);
+      // const newPost = await this.postRepository.findOnePost(createPost.postId);
+      // console.log(newPost.postId, newPost.title, newPost.where, newPost.completion);
+      console.log('테스트1');
+      return createPost;
+      // return {
+      //   postId: newPost.postId,
+      //   nickname: newPost.User.nickname,
+      //   title: newPost.title,
+      //   where: newPost.where,
+      //   completion: newPost.completion,
+      // };
     } catch (error) {
       console.log(error);
       return { errorMessage: error.message };
