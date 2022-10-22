@@ -20,8 +20,7 @@ class PostRepository {
   findOnePost = async (postId) => {
     const myOnePost = await Posts.findOne({
       where: { postId },
-      include: [{ model: Users, attributes: ['nickname'] }],
-      order: [['createdAt', 'DESC']],
+      include: [{ model: Users }],
     });
     return myOnePost;
   };
@@ -36,12 +35,6 @@ class PostRepository {
     });
     return newPost;
   };
-
-  // 4. 게시글 수정
-  // updatePost = async (postId, title, content, where) => {
-  //   const updatePost = await Posts.update({ title, content, where }, { where: { postId } });
-  //   return updatePost;
-  // };
 
   // 5. 게시글 삭제
   deletePost = async (postId) => {

@@ -8,7 +8,7 @@ class PostController {
     const { userId } = res.locals.user;
 
     const myPosts = await this.postService.findMyPosts(userId);
-    res.status(200).send({ data: myPosts });
+    res.status(200).send(myPosts);
   };
 
   // 2. 내가 작성한 게시글 상세 조회
@@ -18,7 +18,7 @@ class PostController {
 
     const myOnePost = await this.postService.findOnePost(postId);
 
-    res.status(200).send({ data: myOnePost });
+    res.status(200).send(myOnePost);
   };
 
   // 3. 게시글 작성
@@ -30,7 +30,7 @@ class PostController {
 
     const { userId } = res.locals.user;
     const newPost = await this.postService.createPost(userId, title, travel, completion);
-    res.status(201).send(newPost);
+    return res.status(201).send(newPost);
   };
 
   // 5. 게시글 삭제
@@ -41,7 +41,7 @@ class PostController {
     const { userId } = res.locals.user;
 
     const deletePost = await this.postService.deletePost(userId, postId);
-    return deletePost;
+    res.status(200).send(deletePost);
   };
 }
 
