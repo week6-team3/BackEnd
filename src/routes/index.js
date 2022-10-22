@@ -3,9 +3,11 @@ const router = express.Router();
 
 // Routes
 const userRouter = require('./users');
-const postsRouter = require('./posts.routes');
+const postRouter = require('./posts.routes');
+const sharingRouter = require('./sharings.routes');
 
-router.use('/',userRouter);
-router.use('/', postsRouter);
+router.use('/', userRouter);
+router.use('/', postRouter);
+router.use('/', sharingRouter);
 
 module.exports = router;

@@ -1,13 +1,12 @@
-const PostRepository = require('../repositories/posts.repository');
-const SharingRepository = require('../services/sharigs.repository');
+const SharingRepository = require('../repositories/sharings.repository');
 
 class SharingService {
-  postRepository = new PostRepository();
-  shringRepository = new SharingRepository();
+  sharingRepository = new SharingRepository();
 
   // 1. 공유된 게시글 전체 조회
   findSharedPosts = async () => {
     try {
+      console.log('test2');
       const sharedPosts = await this.sharingRepository.findSharedPosts();
       if (!sharedPosts) throw new Error('공유된 게시글이 없습니다.');
       // const myAllPosts = myPosts.map((post) => {
@@ -32,7 +31,7 @@ class SharingService {
   // 2. 공유된 게시글 상세 조회
   findOnePost = async (postId) => {
     try {
-      const existPost = await this.postRepository.findOnePost(postId);
+      const existPost = await this.sharingRepository.findOnePost(postId);
       if (!existPost) throw new Error('존재하지 않는 게시글입니다.');
 
       return {

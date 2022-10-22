@@ -3,8 +3,9 @@ const { Users, Posts } = require('../../models');
 class SharingRepository {
   // 공유된 게시글 전체 조회
   findSharedPosts = async () => {
+    console.log('test3');
     const sharedPosts = await Posts.findAll({
-      where: { sharing: '1' },
+      where: { sharing: 'true' },
       order: [['likeCount', 'DESC']],
       include: [
         {
@@ -13,12 +14,22 @@ class SharingRepository {
         },
       ],
     });
+    console.log('test4');
     return sharedPosts;
+  };
+
+  // 2. 게시글 상세 조회
+  findOnePost = async (postId) => {
+    const myOnePost = await Posts.findOne({
+      where: { postId, sharing: 'true' },
+      include: [{ model: Users }],
+    });
+    return myOnePost;
   };
 
   // 게시글 공유
   sharePost = async (postId) => {
-    await Posts.update({ sharings: 'true' }, { where: { postId } });
+    await Posts.update({ sharing: 'true' }, { where: { postId } });
     return { message: '게시글이 공유되었습니다.' };
   };
 }
