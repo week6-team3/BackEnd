@@ -37,7 +37,9 @@ class PostService {
     try {
       const existPost = await this.postRepository.findOnePost(postId);
       if (!existPost) throw new Error('존재하지 않는 게시글입니다.');
-      // return existPost;
+      let isMyPost = '';
+      if (userId && existPost.userId === userId) isMyPost = 'true';
+      else isMyPost = 'false';
 
       return {
         postId: existPost.postId,
@@ -47,8 +49,8 @@ class PostService {
         title: existPost.title,
         likeCount: existPost.likeCount,
         travel: existPost.travel,
-        completion: existPost.completion,
         sharing: existPost.sharing,
+        isMyPost: isMyPost,
         createdAt: existPost.createdAt,
         updatedAt: existPost.updatedAt,
       };
@@ -61,7 +63,7 @@ class PostService {
   // 3. 게시글 작성
   createPost = async (userId, title, travel, completion) => {
     try {
-      const createPost = await this.postRepository.createPost(userId, title, travel, completion);
+      const createPost = await this.postRepository.createPost(userId, title, travel);
       const newPost = await this.postRepository.findOnePost(createPost.postId);
 
       // return newPost;

@@ -15,8 +15,9 @@ class PostController {
   fineOnePost = async (req, res) => {
     const { postId } = req.params;
     if (typeof (postId / 1) === NaN || postId.search(/\s/) != -1) throw new Error('postId가 잘못되었습니다.');
-
-    console.log(res.locals.user);
+    let userId;
+    if (!res.locals.user) userId = null;
+    else userId = res.locals.user.userId;
 
     const myOnePost = await this.postService.findOnePost(userId, postId);
 
@@ -28,10 +29,9 @@ class PostController {
     const { title, travel, completion } = req.body;
     if (!title) res.status(400).send({ message: '제목을 입력해주세요.' });
     if (!travel) res.status(400).send({ message: '여행장소(국내/해외)를 선택해주세요.' });
-    if (!completion) res.status(400).send({ message: '완료여부를 선택해주세요' });
 
     const { userId } = res.locals.user;
-    const newPost = await this.postService.createPost(userId, title, travel, completion);
+    const newPost = await this.postService.createPost(userId, title, travel);
     return res.status(201).send(newPost);
   };
 

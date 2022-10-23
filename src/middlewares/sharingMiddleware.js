@@ -8,7 +8,10 @@ UsersRepository = new UsersRepository();
 module.exports = async (req, res, next) => {
   try {
     let accessToken = req.cookies['AccessToken'];
-    if (!accessToken) return next();
+    if (!accessToken) {
+      res.locals.user = null;
+      return next();
+    }
 
     let userId;
     // AccessToken 만료 여부 확인
