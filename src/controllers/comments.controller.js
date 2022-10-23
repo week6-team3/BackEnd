@@ -10,11 +10,9 @@ class CommentController {
             const { postId } = req.params;
             const { comment } = req.body;
 
-            const createResult =  await this.commentService.createComment(userId, postId, comment);
+            await this.commentService.createComment(userId, postId, comment);
 
-            // const createResult = { commentId, userId, postId, comment };
-
-            res.status(201).json({ result: createResult, message: "댓글을 작성하였습니다."});
+            res.status(201).json({ message: "댓글을 작성하였습니다."});
         } catch(err) {
             console.log(err);
             return { errorMessage: err.message };
