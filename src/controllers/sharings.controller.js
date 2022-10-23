@@ -13,8 +13,8 @@ class SharingController {
   getOnePost = async (req, res) => {
     const { postId } = req.params;
     // if (typeof (postId / 1) === NaN || postId.search(/\s/) != -1) throw new Error('postId가 잘못되었습니다.');
-
-    const getOnePost = await this.sharingService.findOnePost(postId);
+    const { userId } = res.locals.user;
+    const getOnePost = await this.sharingService.findOnePost(userId, postId);
 
     res.status(200).send(getOnePost);
   };

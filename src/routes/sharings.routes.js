@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const authMiddleware = require('../middlewares/authMiddleware');
+const sharingMiddleware = require('../middlewares/sharingMiddleware');
 const SharingController = require('../controllers/sharings.controller');
 const sharingController = new SharingController();
 
@@ -8,7 +9,7 @@ const sharingController = new SharingController();
 router.get('/sharings', sharingController.getSharedPosts);
 
 // 2. 공유된 게시글 상세 조회
-router.get('/sharings/:postId', sharingController.getOnePost);
+router.get('/sharings/:postId', sharingMiddleware, sharingController.getOnePost);
 
 // 3. 내 게시글 공유하기
 router.put('/sharings/:postId', authMiddleware, sharingController.sharePost);

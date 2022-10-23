@@ -1,6 +1,7 @@
 const { Router } = require('express');
 const router = Router();
 const authMiddleware = require('../middlewares/authMiddleware');
+const sharingMiddleware = require('../middlewares/sharingMiddleware');
 const PostsController = require('../controllers/posts.controller');
 const postsController = new PostsController();
 
@@ -8,7 +9,7 @@ const postsController = new PostsController();
 router.get('/posts', authMiddleware, postsController.findMyPosts);
 
 // 2. 내가 작성한 게시글 상세 조회
-router.get('/posts/:postId', postsController.fineOnePost);
+router.get('/posts/:postId', sharingMiddleware, postsController.fineOnePost);
 
 // 3. 게시글 작성
 router.post('/posts', authMiddleware, postsController.createPost);

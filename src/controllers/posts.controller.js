@@ -16,7 +16,9 @@ class PostController {
     const { postId } = req.params;
     if (typeof (postId / 1) === NaN || postId.search(/\s/) != -1) throw new Error('postId가 잘못되었습니다.');
 
-    const myOnePost = await this.postService.findOnePost(postId);
+    console.log(res.locals.user);
+
+    const myOnePost = await this.postService.findOnePost(userId, postId);
 
     res.status(200).send(myOnePost);
   };

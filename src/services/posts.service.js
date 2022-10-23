@@ -33,9 +33,8 @@ class PostService {
   };
 
   // 2. 내가 작성한 게시글 상세 조회
-  findOnePost = async (postId) => {
+  findOnePost = async (userId, postId) => {
     try {
-      // 에러 없이 로그인 여부 확인하고 싶은데...
       const existPost = await this.postRepository.findOnePost(postId);
       if (!existPost) throw new Error('존재하지 않는 게시글입니다.');
       // return existPost;
