@@ -1,46 +1,39 @@
-const CheckListService = require("../services/checklist.service");
+const CheckListService = require('../services/checklist.service');
 
 class CheckListController {
+  constructor() {
+    this.checkListService = new CheckListService();
+  }
 
-    constructor() {
-        this.checkListService = new CheckListService();
-    }
+  createCheckList = async (req, res) => {
+    const { content, isDone, postId } = req.body;
 
-    createCheckList = async (req,res) => {
+    const createCheckListResult = await this.checkListService.createCheckListService(content, isDone, postId);
 
-        const { content, isDone, postId } = req.body;
+    res.send(createCheckListResult);
+  };
 
-        const createCheckListResult = await this.checkListService.createCheckListService(content, isDone, postId);
-        
-        res.send(createCheckListResult)
+  deleteCheckList = async (req, res) => {
+    const { checkId } = req.params;
 
-    }
+    const deleteCheckListResult = await this.checkListService.deleteCheckListService(checkId);
 
-    deleteCheckList = async (req,res) => {
+    res.send(deleteCheckListResult);
+  };
 
-        const { checkId } = req.params;
+  updateCheckList = async (req, res) => {
+    const { checkId } = req.params;
+    const { isDone } = req.body;
 
-        const deleteCheckListResult = await this.checkListService.deleteCheckListService(checkId);
-        
-        res.send(deleteCheckListResult)
-    }
+    const updateCheckListResult = await this.checkListService.updateCheckListService(checkId, isDone);
 
-    updateCheckList = async (req,res) => {
-
-        const { checkId } = req.params;
-        const { isDone } = req.body; 
-
-        const updateCheckListResult = await this.checkListService.updateCheckListService(checkId, isDone);
-
-        res.send(updateCheckListResult)
-    }
-
+    res.send(updateCheckListResult);
+  };
 }
 
+module.exports = CheckListController;
 
-module.exports = CheckListController
-
-// create : /checkList 
+// create : /checkList
 // data : content : string , isdone : true, postId : int
 
 // delete : /checkList/checkId

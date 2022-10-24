@@ -42,6 +42,7 @@ class SharingService {
       let isMyPost = '';
       if (userId && existPost.userId === userId) isMyPost = 'true';
       else isMyPost = 'false';
+      const myCheckList = await this.sharingRepository.findCheckList(postId);
       return {
         postId: existPost.postId,
         userId: existPost.userId,
@@ -55,6 +56,7 @@ class SharingService {
         likeCount: existPost.likeCount,
         createdAt: existPost.createdAt,
         updatedAt: existPost.updatedAt,
+        checkList: myCheckList,
       };
     } catch (error) {
       console.log(error);

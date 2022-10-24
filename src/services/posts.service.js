@@ -37,9 +37,10 @@ class PostService {
     try {
       const existPost = await this.postRepository.findOnePost(postId);
       if (!existPost) throw new Error('존재하지 않는 게시글입니다.');
-      let isMyPost = '';
+      let isMyPost;
       if (userId && existPost.userId === userId) isMyPost = 'true';
       else isMyPost = 'false';
+      const myCheckList = await this.postRepository.findCheckList(postId);
 
       return {
         postId: existPost.postId,
@@ -53,6 +54,7 @@ class PostService {
         isMyPost: isMyPost,
         createdAt: existPost.createdAt,
         updatedAt: existPost.updatedAt,
+        checkList: myCheckList,
       };
     } catch (error) {
       console.log(error);
@@ -87,26 +89,28 @@ class PostService {
   };
 
   // 4. 게시글 수정
-  updatePost = async (title,travel,postId,userId) => {
+  updatePost = async (title, travel, postId, userId) => {
     try {
       const findOnePostResult = await this.postRepository.findOnePost(postId);
-      if(!findOnePostResult){ throw new Error('존재하지 않는 게시글입니다.') }
-      if(findOnePostResult.userId !== userId){ throw new Error('수정 권한이 없습니다.') }
+      if (!findOnePostResult) {
+        throw new Error('존재하지 않는 게시글입니다.');
+      }
+      if (findOnePostResult.userId !== userId) {
+        throw new Error('수정 권한이 없습니다.');
+      }
 
       // const updatePostResult = await this.postRepository.updatePost(title,travel,completion,checklist,postId);
-      const updatePostResult = await this.postRepository.updatePost(title,travel,postId);
-      
-      if(updatePostResult){
-        return {message: '수정완료'}
-      }else{
-        return { errorMessage:'수정 실패. 관리자에게 문의 부탁드립니다.' }
+      const updatePostResult = await this.postRepository.updatePost(title, travel, postId);
+
+      if (updatePostResult) {
+        return { message: '수정완료' };
+      } else {
+        return { errorMessage: '수정 실패. 관리자에게 문의 부탁드립니다.' };
       }
-      
-      
     } catch (error) {
       return { errorMessage: error.message };
     }
-  }
+  };
 
   // 5. 게시글 삭제
   deletePost = async (userId, postId) => {

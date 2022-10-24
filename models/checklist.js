@@ -1,7 +1,5 @@
 'use strict';
-const {
-  Model
-} = require('sequelize');
+const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Checklist extends Model {
     /**
@@ -13,45 +11,48 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       this.belongsTo(models.Posts, {
         foreignKey: 'postId',
-        sourceKey: 'postsId',
+        targetKey: 'postId',
       });
     }
   }
-  Checklist.init({
-    checkId: {
-      allowNull: false,
-      autoIncrement: true,
-      primaryKey: true,
-      type: DataTypes.INTEGER
-    },
-    postId: {
-      type: DataTypes.INTEGER,
-      references: {
-        model: 'Posts',
-        key: 'postId',
+  Checklist.init(
+    {
+      checkId: {
+        allowNull: false,
+        autoIncrement: true,
+        primaryKey: true,
+        type: DataTypes.INTEGER,
       },
-      onDelete: 'cascade',
-      allowNull: false
+      postId: {
+        type: DataTypes.INTEGER,
+        references: {
+          model: 'Posts',
+          key: 'postId',
+        },
+        onDelete: 'cascade',
+        allowNull: false,
+      },
+      content: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      isDone: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      createdAt: {
+        allowNull: false,
+        type: DataTypes.DATE,
+      },
+      updatedAt: {
+        allowNull: false,
+        type: DataTypes.DATE,
+      },
     },
-    content: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    isDone: {
-      type: DataTypes.BOOLEAN,
-      allowNull: false
-    },
-    createdAt: {
-      allowNull: false,
-      type: DataTypes.DATE
-    },
-    updatedAt: {
-      allowNull: false,
-      type: DataTypes.DATE
+    {
+      sequelize,
+      modelName: 'Checklist',
     }
-  },{
-    sequelize,
-    modelName: 'Checklist',
-  });
+  );
   return Checklist;
 };

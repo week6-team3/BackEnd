@@ -7,7 +7,7 @@ module.exports = {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
       postId: {
         type: Sequelize.INTEGER,
@@ -16,27 +16,27 @@ module.exports = {
           key: 'postId',
         },
         onDelete: 'cascade',
-        allowNull: false
+        allowNull: false,
       },
       content: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: false,
       },
       isDone: {
-        type: Sequelize.BOOLEAN,
-        allowNull: false
+        type: Sequelize.STRING,
+        allowNull: false,
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE
-      }
+        type: Sequelize.DATE,
+      },
     });
   },
   async down(queryInterface, Sequelize) {
     await queryInterface.dropTable('Checklists');
-  }
+  },
 };

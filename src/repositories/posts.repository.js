@@ -27,9 +27,14 @@ class PostRepository {
           attributes: ['nickname', 'email'],
         },
       ],
-
     });
     return myOnePost;
+  };
+
+  // 2-1. 게시글에 달린 체크리스트 조회
+  findCheckList = async (postId) => {
+    const myCheckList = await Checklist.findAll({ where: { postId }, attributes: ['checkId', 'content', 'isDone'] });
+    return myCheckList;
   };
 
   // 3. 게시글 작성
@@ -43,15 +48,15 @@ class PostRepository {
     return newPost;
   };
 
-  // 4. 게시글 수정 
-  updatePost = async (title,travel,postId) => {
-    const [ updatePost ] = await Posts.update(
-      // {title : title, travel:travel}, 
-      {title : title}, 
-      {where: {postId: postId}},
-    )
-    return updatePost
-  }
+  // 4. 게시글 수정
+  updatePost = async (title, travel, postId) => {
+    const [updatePost] = await Posts.update(
+      // {title : title, travel:travel},
+      { title: title },
+      { where: { postId: postId } }
+    );
+    return updatePost;
+  };
 
   // 5. 게시글 삭제
   deletePost = async (postId) => {

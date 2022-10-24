@@ -1,4 +1,4 @@
-const { Users, Posts } = require('../../models');
+const { Users, Posts, Checklist } = require('../../models');
 
 class SharingRepository {
   // 공유된 게시글 전체 조회
@@ -23,6 +23,12 @@ class SharingRepository {
       include: [{ model: Users }],
     });
     return myOnePost;
+  };
+
+  // 게시글에 달린 체크리스트 조회
+  findCheckList = async (postId) => {
+    const myCheckList = await Checklist.findAll({ where: { postId }, attributes: ['checkId', 'content', 'isDone'] });
+    return myCheckList;
   };
 
   // 게시글 공유
