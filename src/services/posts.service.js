@@ -3,7 +3,7 @@ const PostRepository = require('../repositories/posts.repository');
 class PostService {
   postRepository = new PostRepository();
 
-  // 1. 내가 작성한 게시글 조회 // 체크리스트 추가해야 함.
+  // 1. 내가 작성한 게시글 조회
   findMyPosts = async (userId) => {
     try {
       const myPosts = await this.postRepository.findMyPosts(userId);
@@ -32,7 +32,7 @@ class PostService {
     }
   };
 
-  // 2. 내가 작성한 게시글 상세 조회
+  // 2. 내가 작성한 게시글 상세 조회 // 체크리스트 추가해야 함.
   findOnePost = async (userId, postId) => {
     try {
       const existPost = await this.postRepository.findOnePost(postId);
