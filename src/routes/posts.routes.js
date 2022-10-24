@@ -13,6 +13,9 @@ router.get('/posts/:postId', postsController.fineOnePost);
 // 3. 게시글 작성
 router.post('/posts', authMiddleware, postsController.createPost);
 
+// 4. 게시글 수정
+router.patch('/posts/:postId', authMiddleware, postsController.updatePost);
+
 // 5. 게시글 삭제
 router.delete('/posts/:postId', authMiddleware, postsController.deletePost);
 

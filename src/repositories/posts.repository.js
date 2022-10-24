@@ -1,4 +1,4 @@
-const { Users, Posts } = require('../../models');
+const { Users, Posts, Checklist } = require('../../models');
 
 class PostRepository {
   // 1. 내가 작성한 게시글 조회
@@ -21,6 +21,8 @@ class PostRepository {
     const myOnePost = await Posts.findOne({
       where: { postId },
       include: [{ model: Users }],
+      // include: [{ model: Checklist }],
+      raw: true
     });
     return myOnePost;
   };
@@ -35,6 +37,16 @@ class PostRepository {
     });
     return newPost;
   };
+
+  // 4. 게시글 수정 
+  updatePost = async (title,travel,postId) => {
+    const [ updatePost ] = await Posts.update(
+      // {title : title, travel:travel}, 
+      {title : title}, 
+      {where: {postId: postId}},
+    )
+    return updatePost
+  }
 
   // 5. 게시글 삭제
   deletePost = async (postId) => {

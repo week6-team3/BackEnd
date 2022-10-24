@@ -10,7 +10,7 @@ class jsonwebtoken {
       expiresIn: "3h",
     });
   };
-
+  
   // Refresh Token 생성
   createRefreshToken = async (userId) => {
     return jwt.sign({}, process.env.SECRET_KEY, { expiresIn: "7d" });
