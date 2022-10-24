@@ -11,18 +11,18 @@ module.exports = {
       },
       userId: {
         allowNull: false,
-        // reference: {
-        //   model: 'Users',
-        //   key: 'userId'
-        // },
+        reference: {
+          model: 'Users',
+          key: 'userId'
+        },
         type: Sequelize.INTEGER
       },
       postId: {
         allowNull: false,
-        // reference: {
-        //   model: 'Posts',
-        //   key: 'postId'
-        // },
+        reference: {
+          model: 'Posts',
+          key: 'postId'
+        },
         type: Sequelize.INTEGER
       },
       comment: {

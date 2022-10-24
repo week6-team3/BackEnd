@@ -1,13 +1,37 @@
-const { Posts, Comments } = require('../../models');
+const { Users, Posts, Comments } = require('../../models');
 const { Op } = require('sequelize');
 
 class CommentRepository {
+
+    // 게시글의 댓글을 보아보아요
+    getComment = async (postId) => {
+        try{
+            const findComment = await Comments.findAll({
+            where: {postId},
+            order: [['createdAt','DESC']],
+            include: [
+                {
+                    model: Users,
+                    attributes: ['nickname'],
+                },
+            ],
+        });
+        if(!findComment) throw new error('댓글이 존재하지 않습니다.')
+
+        return findComment;
+        
+    } catch(err) {
+        console.log(err);
+        return { errorMessage: err.message };
+    }
+    };
+
     // 댓글 생성 포스트맨 완료
     createComment = async (userId, postId, comment) => {
         // 게시글 존재 여부
     try {
         const existPost = await Posts.findByPk(postId);
-        if (!existPost) throw new error('게시글이 존재하지 않습니다!!!!!!!');
+        if (!existPost) throw new error('게시글이 존재하지 않습니다.');
         
 
         const createData = await Comments.create({ userId, postId, comment });

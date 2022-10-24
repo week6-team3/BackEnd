@@ -7,8 +7,8 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'userId',
         sourceKey: 'userId',
       });
-      // this.hasMany(models.Comments, { foreignKey: 'commentId', sourceKey: 'commentId' });
-      // this.hasMany(models.Checklists, { foreignKey: 'checklistId', sourceKey: 'checklistId' });
+      this.hasMany(models.Comments, { foreignKey: 'commentId', /* sourceKey: 'commentId' */ });
+      // this.hasMany(models.Checklists, { foreignKey: 'checklistId', /* sourceKey: 'checklistId' */ });
     }
   }
   Posts.init(

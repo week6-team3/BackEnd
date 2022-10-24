@@ -1,31 +1,34 @@
-const { Likes } = require('../../models');
+const { Posts, Likes } = require('../../models');
 
 class LikeRepository {
-    /**
-     * // 좋아요 개수
-     * countLike = async (postId) => {
-     *    const countLike = await Likes.count({ where: postId });
-     * 
-     *    const likeCount = await Posts.create(countLike);
-     * 
-     *    return likeCount;
-     * };
-     */
 
-    // 좋아요
+    // find
+    findLike = async (postId, userId) => {
+        const findLike = await Likes.findOne({where: {userId, postId}})
+
+        return findLike;
+    };
+
+    // create
     createLike = async (postId, userId) => {
-        const likePost = await Likes.create( postId, userId );
-
-        return likePost;
+        await Likes.create({userId:userId, postId:postId})
     };
 
-    // 좋아요 취소
-    deleteLike = async (postId) => {
-        const disLikePost = await Likes.destroy({ where: postId });
-
-        return disLikePost;
+    // delete
+    deleteLike = async (postId, userId) => {
+        await Likes.destroy({ where: {postId:postId, userId:userId} })
     };
 
+    // increment likeCount
+    increment = async(postId) => {
+        await Posts.increment({likeCount:1}, {where: {postId:postId}})
+    };
+
+    // decrement likeCount
+    decrement = async(postId) => {
+        await Posts.decrement({likeCount:1}, {where: {postId:postId}})
+    };
+    
 }
 
 module.exports = LikeRepository;

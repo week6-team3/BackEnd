@@ -6,6 +6,27 @@ class CommentService {
         this.commentRepository = new CommentRepository();
     }
 
+    // 댓글 보기
+    getComment = async (postId) => {
+        try {
+            const getComment = await this.commentRepository.getComment(postId);
+
+            const getAllComment = getComment.map((comment) => {
+            return {
+                nickname: comment.User.nickname,
+                comment: comment.comment,
+                createdAt: comment.createdAt,
+            };
+        });
+
+        return getAllComment;
+        } catch(err) {
+            console.log(err);
+            return { errorMessage: err.message };
+        }
+        
+    }
+
     // 댓글 생성
     createComment = async (userId, postId, comment) => {
         return await this.commentRepository.createComment(userId, postId, comment);

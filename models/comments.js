@@ -11,11 +11,10 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      /** 
-       * this.belongsTo(models.Users, { foreignKey: 'userId' });
-       * this.belongsTo(models.Posts, { foreignKey: 'postId' });
-       * this.belongsTo(models.Checklist, { foreignKey: 'checklistId' });
-       */
+      
+      this.belongsTo(models.Users, { foreignKey: 'userId' });
+      this.belongsTo(models.Posts, { foreignKey: 'postId' });
+      
     }
   }
   Comments.init({
@@ -27,18 +26,18 @@ module.exports = (sequelize, DataTypes) => {
     },
     userId: {
       allowNull: false,
-      // reference: {
-      //   model: 'Users',
-      //   key: 'userId'
-      // },
+      reference: {
+        model: 'Users',
+        key: 'userId'
+      },
       type: DataTypes.INTEGER
     },
     postId: {
       allowNull: false,
-      // reference: {
-      //   model: 'Posts',
-      //   key: 'postId'
-      // },
+      reference: {
+        model: 'Posts',
+        key: 'postId'
+      },
       type: DataTypes.INTEGER
     },
     comment: {

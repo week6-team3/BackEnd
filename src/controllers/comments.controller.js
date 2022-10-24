@@ -3,6 +3,20 @@ const CommentService = require('../services/comments.service');
 class CommentController {
     commentService = new CommentService();
 
+    // 댓글 보기
+    getComment = async (req, res) => {
+        try{
+            const { postId } = req.params;
+
+            const comment = await this.commentService.getComment(postId);
+
+            res.status(200).json({ data: comment });
+        } catch(err) {
+            console.log(err);
+            return { errorMessage: err.message };
+        }
+    }
+
     // 댓글 생성
     createComment = async (req, res) => {
         try {
