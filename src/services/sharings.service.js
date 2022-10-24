@@ -1,27 +1,33 @@
 const SharingRepository = require('../repositories/sharings.repository');
+const PostRepository = require('../repositories/posts.repository');
 
 class SharingService {
   sharingRepository = new SharingRepository();
+  postRepository = new PostRepository();
 
   // 1. 공유된 게시글 전체 조회
   findSharedPosts = async () => {
     try {
-      console.log('test2');
       const sharedPosts = await this.sharingRepository.findSharedPosts();
       if (!sharedPosts) throw new Error('공유된 게시글이 없습니다.');
-      // const myAllPosts = myPosts.map((post) => {
-      //   return {
-      //     nickname: post.User.nickname,
-      //     postId: post.postId,
-      //     title: post.title,
-      //     liksCount: post.like,
-      //     createdAt: post.createdAt,
-      //     updatedAt: post.updatedAt,
-      //   };
-      // });
 
-      // 체크리스트 추가해야 함. 가공 전 상태 (보낼 데이터 선정되면 가공하기)
-      return sharedPosts;
+      const allPosts = sharedPosts.map((post) => {
+        return {
+          postId: post.postId,
+          userId: post.userId,
+          nickname: post.User.nickname,
+          email: post.User.email,
+          title: post.title,
+          likeCount: post.likeCount,
+          travel: post.travel,
+          completion: post.completion,
+          sharing: post.sharing,
+          createdAt: post.createdAt,
+          updatedAt: post.updatedAt,
+        };
+      });
+
+      return allPosts;
     } catch (error) {
       console.log(error);
       return { errorMessage: error.message };
@@ -29,18 +35,22 @@ class SharingService {
   };
 
   // 2. 공유된 게시글 상세 조회
-  findOnePost = async (postId) => {
+  findOnePost = async (userId, postId) => {
     try {
       const existPost = await this.sharingRepository.findOnePost(postId);
       if (!existPost) throw new Error('존재하지 않는 게시글입니다.');
-
+      let isMyPost = '';
+      if (userId && existPost.userId === userId) isMyPost = 'true';
+      else isMyPost = 'false';
       return {
         postId: existPost.postId,
         userId: existPost.userId,
         nickname: existPost.User.nickname,
+        email: existPost.User.email,
         title: existPost.title,
         travel: existPost.travel,
         sharing: existPost.sharing,
+        isMyPost: isMyPost,
         completion: existPost.completion,
         likeCount: existPost.likeCount,
         createdAt: existPost.createdAt,

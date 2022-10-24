@@ -9,9 +9,9 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // 다른 테이블 모델이 없어서 일단 주석입니다 !!
-      this.hasMany(models.Posts,{
-        as:"Posts",
-        foreignKey:"userId",
+      this.hasMany(models.Posts, {
+        as: 'Posts',
+        foreignKey: 'userId',
       });
       // this.hasMany(models.Likes,{
       //   as:"Likes",
