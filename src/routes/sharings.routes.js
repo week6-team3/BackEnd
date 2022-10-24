@@ -12,6 +12,6 @@ router.get('/sharings', sharingController.getSharedPosts);
 router.get('/sharings/:postId', sharingMiddleware, sharingController.getOnePost);
 
 // 3. 내 게시글 공유하기
-router.put('/sharings/:postId', authMiddleware, sharingController.sharePost);
+router.post('/sharings', authMiddleware, sharingController.sharePost);
 
 module.exports = router;

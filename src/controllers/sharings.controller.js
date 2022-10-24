@@ -12,7 +12,6 @@ class SharingController {
   // 2. 공유된 게시글 상세 조회
   getOnePost = async (req, res) => {
     const { postId } = req.params;
-    // if (typeof (postId / 1) === NaN || postId.search(/\s/) != -1) throw new Error('postId가 잘못되었습니다.');
     let userId;
     if (!res.locals.user) userId = null;
     else userId = res.locals.user.userId;
@@ -23,8 +22,7 @@ class SharingController {
 
   // 3. 게시글 공유하기
   sharePost = async (req, res) => {
-    const { postId } = req.params;
-    // if (typeof (postId / 1) === NaN || postId.search(/\s/) != -1) throw new Error('postId를 잘못 입력하였습니다.');
+    const { postId } = req.body;
 
     const { userId } = res.locals.user;
 
