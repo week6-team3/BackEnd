@@ -37,7 +37,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false
     },
-    isdone: {
+    isDone: {
       type: DataTypes.BOOLEAN,
       allowNull: false
     },

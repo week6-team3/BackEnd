@@ -6,9 +6,9 @@ class CheckListService {
         this.checkListRepository = new CheckListRepository();
     }
 
-    createCheckListService = async (content, isdone, postId) => {
+    createCheckListService = async (content, isDone, postId) => {
         
-        const createCheckListResult = await this.checkListRepository.createCheckList(content, isdone, postId);
+        const createCheckListResult = await this.checkListRepository.createCheckList(content, isDone, postId);
 
         return createCheckListResult
     }
@@ -24,9 +24,9 @@ class CheckListService {
 
     }
 
-    updateCheckListService = async (checkId, isdone) => {
+    updateCheckListService = async (checkId, isDone) => {
 
-        const [ updateCheckListResult ] = await this.checkListRepository.updateCheckList(checkId, isdone);
+        const [ updateCheckListResult ] = await this.checkListRepository.updateCheckList(checkId, isDone);
 
         if(!updateCheckListResult){
             return  { message: '수정에 실패했습니다.' }
@@ -38,12 +38,3 @@ class CheckListService {
 }
 
 module.exports = CheckListService ; 
-
-
-// create : /checkList 
-// data : content : string , isdone : true, postId : int
-
-// delete : /checkList/checkId
-
-// patch : /checkList/checkId
-// data : isdone

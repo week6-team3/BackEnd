@@ -14,13 +14,14 @@ class CheckListRepository {
         return findOneCheckListResult
     }
 
-    createCheckList = async (content, isdone, postId) => {
+    createCheckList = async (content, isDone, postId) => {
         try {
+            
             const findOneCheckListResult = await this.findOneCheckList(postId, content);
             if(findOneCheckListResult) { throw new Error('이미 등록했어요!') }
             
             const createCheckListResult = await this.Checklist.create({
-                "content":content, "isdone":isdone, "postId":postId
+                "content":content, "isDone":isDone, "postId":postId
             });
 
             return createCheckListResult
@@ -41,10 +42,10 @@ class CheckListRepository {
 
     }
 
-    updateCheckList = async (checkId, isdone) => {
+    updateCheckList = async (checkId, isDone) => {
         
         const updateCheckListResult = await this.Checklist.update(
-            {isdone:isdone},
+            {isDone:isDone},
             {where : {"checklistId":checkId}}
         )
         return updateCheckListResult
