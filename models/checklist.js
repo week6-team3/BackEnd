@@ -18,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Checklist.init({
-    checklistId: {
+    checkId: {
       allowNull: false,
       autoIncrement: true,
       primaryKey: true,

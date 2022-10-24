@@ -33,7 +33,7 @@ class CheckListRepository {
 
         // 삭제 만들어야한다잉
         try {
-            const deleteCheckListResult = await this.Checklist.destroy({where:{"checklistId":checkId}});
+            const deleteCheckListResult = await this.Checklist.destroy({where:{"checkId":checkId}});
             return deleteCheckListResult
         } catch (error) {
             return { errorMessage: error.message }

@@ -3,7 +3,7 @@
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('Checklists', {
-      checklistId: {
+      checkId: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
