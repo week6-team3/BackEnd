@@ -24,7 +24,6 @@ class UserService {
             // 유저 조회
             const findOneUserResult = await this.userRepository.findOneUser(email);
             if(!findOneUserResult){ throw new Error('이메일 혹은 비밀번호를 확인해주세요.') }
-    
             // 비밀번호 일치여부
             const passwordResult = await bcrypt.compare(password,findOneUserResult.password)
             if(!passwordResult){ throw new Error('이메일 혹은 비밀번호를 확인해주세요.')}

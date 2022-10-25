@@ -1,4 +1,4 @@
-const { Users, Posts } = require('../../models');
+const { Users, Posts, Checklist } = require('../../models');
 
 class PostRepository {
   // 1. 내가 작성한 게시글 조회
@@ -20,20 +20,51 @@ class PostRepository {
   findOnePost = async (postId) => {
     const myOnePost = await Posts.findOne({
       where: { postId },
-      include: [{ model: Users }],
+      include: [
+        {
+          model: Users,
+          attributes: ['nickname', 'email'],
+        },
+      ],
     });
     return myOnePost;
   };
 
   // 3. 게시글 작성
-  createPost = async (userId, title, travel, completion) => {
+  createPost = async (userId, title, travel) => {
     const newPost = await Posts.create({
       userId,
       title,
       travel,
-      completion,
     });
+    console.log(newPost.postId);
     return newPost;
+  };
+
+  // 2-1. 게시글에 달린 체크리스트 조회
+  findCheckList = async (postId) => {
+    const myCheckList = await Checklist.findAll({ where: { postId }, attributes: ['checkId', 'content', 'isDone'] });
+    return myCheckList;
+  };
+
+  // 3. 게시글 작성
+  createPost = async (userId, title, travel) => {
+    const newPost = await Posts.create({
+      userId,
+      title,
+      travel,
+    });
+    console.log(newPost.postId);
+    return newPost;
+  };
+
+  // 4. 게시글 수정
+  updatePost = async (title, travel, postId) => {
+    const [updatePost] = await Posts.update(
+      { title, travel },
+      { where: { postId: postId } }
+    );
+    return updatePost;
   };
 
   // 5. 게시글 삭제
@@ -44,3 +75,4 @@ class PostRepository {
 }
 
 module.exports = PostRepository;
+

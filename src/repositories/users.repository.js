@@ -24,9 +24,9 @@ class usersRepository {
                     "nickname":nickname,
                     "email":email,
                     "password":password,
-                    
                 })
                 return createUserResult
+                
             }else{
                 throw new Error("이미 가입한 고객입니다.")
             }
@@ -42,7 +42,7 @@ class usersRepository {
         const findOneUserResult = await this.Users.findOne({
             where:{email:email},
             raw:true
-        })
+        })            
         return findOneUserResult
 
     }
