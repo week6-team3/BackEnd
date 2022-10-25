@@ -1,6 +1,6 @@
 const { Posts, Likes } = require('../../models');
 
-class LikeRepository {
+class LikeRepository { 
 
     // find
     findLike = async (postId, userId) => {

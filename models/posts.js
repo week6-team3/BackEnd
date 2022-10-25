@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
       });
       this.hasMany(models.Comments, { foreignKey: 'commentId', /* sourceKey: 'commentId' */ });
       // this.hasMany(models.Checklists, { foreignKey: 'checklistId', /* sourceKey: 'checklistId' */ });
-    }
+    } 
   }
   Posts.init(
     {

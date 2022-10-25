@@ -2,10 +2,10 @@ const LikeService = require('../services/likes.service');
 
 class LikeController {
         likeService = new LikeService();
-
+ 
      // 좋아요
      updateLike = async (req, res) => {
-        try{
+        try{ 
             const { userId } = res.locals.user;
             const { postId } = req.params;
 

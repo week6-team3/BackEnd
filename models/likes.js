@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
       this.belongsTo(models.Posts, { foreignKey: 'postId' });
       
     }
-  }
+  }  
   Likes.init({
     likeId: {
     allowNull: false,

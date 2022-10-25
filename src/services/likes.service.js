@@ -1,6 +1,6 @@
 const LikeRepository = require('../repositories/likes.repository');
 
-class LikeService {
+class LikeService { 
 
     constructor() {
         this.likeRepository = new LikeRepository();
