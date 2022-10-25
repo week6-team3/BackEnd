@@ -62,9 +62,10 @@ class PostService {
   };
 
   // 3. 게시글 작성
-  createPost = async (userId, title, travel, completion) => {
+  createPost = async (userId, title, travel, filename, path) => {
     try {
-      const createPost = await this.postRepository.createPost(userId, title, travel);
+      
+      const createPost = await this.postRepository.createPost(userId, title, travel, filename, path);
       const newPost = await this.postRepository.findOnePost(createPost.postId);
 
       // return newPost;
@@ -80,6 +81,8 @@ class PostService {
         sharing: newPost.sharing,
         createdAt: newPost.createdAt,
         updatedAt: newPost.updatedAt,
+        filename: newPost.filename,
+        path: newPost.path
       };
     } catch (error) {
       console.log(error);

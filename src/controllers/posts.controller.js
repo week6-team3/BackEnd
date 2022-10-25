@@ -1,5 +1,6 @@
 const PostService = require('../services/posts.service');
 
+
 class PostController {
   postService = new PostService();
 
@@ -26,17 +27,17 @@ class PostController {
 
   // 3. 게시글 작성
   createPost = async (req, res) => {
-    // try {
-    // } catch (error) {
-    //   next(error);
-    // }
+
+    const { file } = req;
+    const {filename, path, mimetype} = file;
+    
     const { title, travel } = req.body;
     if (!title) res.status(400).send({ message: '제목을 입력해주세요.' });
-    // if (!travel) res.status(400).send({ message: '여행장소(국내/해외)를 선택해주세요.' });
 
     const { userId } = res.locals.user;
-    const newPost = await this.postService.createPost(userId, title, travel);
-    return res.status(201).send(newPost);
+    const newPost = await this.postService.createPost(userId, title, travel, filename, path);
+
+    return res.status(201).send(newPost).end();
   };
 
   // 4. 게시글 수정 + checklist

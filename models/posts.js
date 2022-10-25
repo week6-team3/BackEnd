@@ -48,6 +48,12 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
         defaultValue: 0,
       },
+      path : {
+        type: DataTypes.STRING,
+      },
+      filename : {
+        type: DataTypes.STRING,
+      },
       travel: {
         allowNull: false,
         type: DataTypes.BOOLEAN,

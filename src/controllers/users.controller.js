@@ -65,21 +65,24 @@ class UserController {
 
             // 로그인 성공 시 쿠키에 토큰 저장
             if(!loginUserResult.errorMessage){
-                // RefreshToken 쿠키 저장
-                const refreshDate = new Date();
-                refreshDate.setDate(refreshDate.getDate()+7);
-                res.cookie('RefreshToken', `Bearer ${loginUserResult.RefreshToken}`, {
-                    expires: refreshDate // 7일
-                });
-    
-                // accessToken 쿠키 생성 
-                const accessDate = new Date();
-                accessDate.setDate(accessDate.getDate()+3);
-                res.cookie('AccessToken', `Bearer ${loginUserResult.AccessToken}`, {
-                    // expires: new Date(Date.now() + 10800000), // 3시간
-                    expires : accessDate
-                });
+                // console.log('1');
+                // // RefreshToken 쿠키 저장
+                // const refreshDate = new Date();
+                // refreshDate.setDate(refreshDate.getDate()+7);
+                // res.cookie('RefreshToken', `Bearer ${loginUserResult.RefreshToken}`, {
+                //     expires: refreshDate // 7일
+                // });
+                // console.log('2');
+                // // accessToken 쿠키 생성 
+                // const accessDate = new Date();
+                // accessDate.setDate(accessDate.getDate()+3);
+                // res.cookie('AccessToken', `Bearer ${loginUserResult.AccessToken}`, {
+                //     // expires: new Date(Date.now() + 10800000), // 3시간
+                //     expires : accessDate
+                // });
             }
+            console.log('::::::>');
+            console.log(loginUserResult.AccessToken,loginUserResult.RefreshToken)
             loginUserResult.errorMessage ? res.status(200).send({errorMessage:loginUserResult.errorMessage}) : res.status(200).send({nickname:loginUserResult.usernickname});
             
         } catch (error) {

@@ -37,6 +37,12 @@ module.exports = {
         type: Sequelize.INTEGER,
         defaultValue: 0,
       },
+      path : {
+        type: Sequelize.STRING,
+      },
+      filename : {
+        type: Sequelize.STRING,
+      },
       travel: {
         allowNull: false,
         type: Sequelize.BOOLEAN,
