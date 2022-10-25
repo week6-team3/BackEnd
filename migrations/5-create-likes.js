@@ -10,19 +10,19 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       userId: {
-        // reference: {
-        //   model: 'Users',
-        //   key: 'userId'
-        // },
+        references: {
+          model: 'Users',
+          key: 'userId'
+        },
         allowNull: false,
         type: Sequelize.INTEGER,
         onDelete: 'cascade', // 부모 데이터가 사라지면 같이 삭제
       },
       postId: {
-        // reference: {
-        //   model: 'Posts',
-        //   key: 'postId'
-        // },
+        references: {
+          model: 'Posts',
+          key: 'postId'
+        },
         allowNull: false,
         type: Sequelize.INTEGER,
         onDelete: 'cascade', // 부모 데이터가 사라지면 같이 삭제

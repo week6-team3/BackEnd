@@ -2,57 +2,41 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Posts', {
-      postId: {
+    await queryInterface.createTable('Checklists', {
+      checkId: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      userId: {
-        allowNull: false,
+      postId: {
         type: Sequelize.INTEGER,
         references: {
-          model: 'Users',
-          key: 'userId',
+          model: 'Posts',
+          key: 'postId',
         },
         onDelete: 'cascade',
-      },
-      title: {
         allowNull: false,
+      },
+      content: {
         type: Sequelize.STRING,
-      },
-      completion: {
         allowNull: false,
-        type: Sequelize.STRING,
       },
-      sharing: {
+      isDone: {
+        type: Sequelize.BOOLEAN,
         allowNull: false,
-        type: Sequelize.STRING,
-        defaultValue: 'false',
-      },
-      likeCount: {
-        allowNull: false,
-        type: Sequelize.INTEGER,
-        defaultValue: 0,
-      },
-      travel: {
-        allowNull: false,
-        type: Sequelize.STRING,
       },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
-        defaultValue: Sequelize.NOW,
       },
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE,
-        defaultValue: Sequelize.NOW,
       },
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Posts');
+    await queryInterface.dropTable('Checklists');
   },
 };
