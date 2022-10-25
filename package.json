@@ -1,37 +1,37 @@
 {
-    "name": "week6",
-    "version": "1.0.0",
-    "description": "화이팅!!!!!!!!!!!!!!!!!!!!!!!!!! 화이팅~!~!~!~!",
-    "main": "index.js",
-    "scripts": {
-      "start": "nodemon src/app.js",
-      "test": "echo \"Error: no test specified\" && exit 1"
-    },
-    "keywords": [],
-    "author": "",
-    "license": "ISC",
-    "dependencies": {
-      "2": "^3.0.0",
-      "bcrypt": "^5.1.0",
-      "body-parser": "^1.20.1",
-      "cookie-parser": "^1.4.6",
-      "dotenv": "^16.0.3",
-      "express": "^4.18.2",
-      "joi": "^17.6.3",
-      "jsonwebtoken": "^8.5.1",
-      "mysql2": "^2.3.3",
-      "sequelize": "^6.25.3"
-    },
-    "repository": {
-      "type": "git",
-      "url": "git+https://github.com/week6-team3/BackEnd.git"
-    },
-    "bugs": {
-      "url": "https://github.com/week6-team3/BackEnd/issues"
-    },
-    "homepage": "https://github.com/week6-team3/BackEnd#readme",
-    "devDependencies": {
-      "nodemon": "^2.0.20",
-      "sequelize-cli": "^6.5.1"
-    }
+  "name": "week6",
+  "version": "1.0.0",
+  "description": "화이팅!!!!!!!!!!!!!!!!!!!!!!!!!! 화이팅~!~!~!~!",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon src/app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "2": "^3.0.0",
+    "bcrypt": "^5.1.0",
+    "body-parser": "^1.20.1",
+    "cookie-parser": "^1.4.6",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "joi": "^17.6.3",
+    "jsonwebtoken": "^8.5.1",
+    "mysql2": "^2.3.3",
+    "sequelize": "^6.25.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/week6-team3/BackEnd.git"
+  },
+  "bugs": {
+    "url": "https://github.com/week6-team3/BackEnd/issues"
+  },
+  "homepage": "https://github.com/week6-team3/BackEnd#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.20",
+    "sequelize-cli": "^6.5.1"
   }
+}

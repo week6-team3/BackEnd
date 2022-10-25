@@ -60,22 +60,26 @@ class UserController {
                 const joiError = error.details[0].message.split('is')[0].replace(/"/g,'');
                 throw new Error(`${joiError} 값이 빈 값입니다.`);
             });
-            
+
             const loginUserResult = await this.userService.loginUserService(email, password);
-    
+
             // 로그인 성공 시 쿠키에 토큰 저장
-
-            // RefreshToken 쿠키 저장
-            const refreshDate = new Date();
-            refreshDate.setDate(refreshDate.getDate()+7);
-            res.cookie('RefreshToken', `Bearer ${loginUserResult.RefreshToken}`, {
-                expires: refreshDate // 7일
-            });
-
-            // accessToken 쿠키 생성 
-            res.cookie('AccessToken', `Bearer ${loginUserResult.AccessToken}`, {
-                expires: new Date(Date.now() + 10800000), // 3시간
-            });
+            if(!loginUserResult.errorMessage){
+                // RefreshToken 쿠키 저장
+                const refreshDate = new Date();
+                refreshDate.setDate(refreshDate.getDate()+7);
+                res.cookie('RefreshToken', `Bearer ${loginUserResult.RefreshToken}`, {
+                    expires: refreshDate // 7일
+                });
+    
+                // accessToken 쿠키 생성 
+                const accessDate = new Date();
+                accessDate.setDate(accessDate.getDate()+3);
+                res.cookie('AccessToken', `Bearer ${loginUserResult.AccessToken}`, {
+                    // expires: new Date(Date.now() + 10800000), // 3시간
+                    expires : accessDate
+                });
+            }
             loginUserResult.errorMessage ? res.status(200).send({errorMessage:loginUserResult.errorMessage}) : res.status(200).send({nickname:loginUserResult.usernickname});
             
         } catch (error) {

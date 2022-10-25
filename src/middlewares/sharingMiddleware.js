@@ -4,9 +4,15 @@ const bcrypt = require('bcrypt');
 jwtService = new jwtService();
 UsersRepository = new UsersRepository();
 
+// 로그인 되어 있는 유저일 경우 Error를 반환한다.
 module.exports = async (req, res, next) => {
   try {
     let accessToken = req.cookies['AccessToken'];
+    if (!accessToken) {
+      res.locals.user = null;
+      return next();
+    }
+
     let userId;
     // AccessToken 만료 여부 확인
     let result = await jwtService.validateAccessToken(accessToken.split(' ')[1]);
@@ -48,9 +54,8 @@ module.exports = async (req, res, next) => {
     res.locals.user = { userId: userId };
     next();
   } catch (error) {
-    return res.status(403).send({
-      errorMessage: '토큰 인증이 정상적이지 않습니다.',
+    return res.status(400).send({
+      errorMessage: '잘못된 접근입니다.',
     });
   }
 };
-
