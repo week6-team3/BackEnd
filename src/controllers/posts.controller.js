@@ -34,7 +34,8 @@ class PostController {
     if (!title) res.status(400).send({ message: '제목을 입력해주세요.' });
     // if (!travel) res.status(400).send({ message: '여행장소(국내/해외)를 선택해주세요.' });
 
-    const { userId } = res.locals.user;
+    // const { userId } = res.locals.user;
+    let userId = 1;
     const newPost = await this.postService.createPost(userId, title, travel);
     return res.status(201).send(newPost);
   };

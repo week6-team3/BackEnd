@@ -12,7 +12,7 @@ router.get('/posts', authMiddleware, postsController.findMyPosts);
 router.get('/posts/:postId', sharingMiddleware, postsController.fineOnePost);
 
 // 3. 게시글 작성
-router.post('/posts', authMiddleware, postsController.createPost);
+router.post('/posts', /* authMiddleware */ postsController.createPost);
 
 // 4. 게시글 수정
 router.patch('/posts/:postId', authMiddleware, postsController.updatePost);

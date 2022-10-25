@@ -1,0 +1,142 @@
+ 2022-10-25 22:10:22 || [ [31merror[39m ] ▶ [31muncaughtException: Cannot find module './middlewares/morganMiddleware'[39m
+[31mRequire stack:[39m
+[31m- /Users/songminhyeong/Projects/MiniProject_W6/src/app.js[39m
+[31mError: Cannot find module './middlewares/morganMiddleware'[39m
+[31mRequire stack:[39m
+[31m- /Users/songminhyeong/Projects/MiniProject_W6/src/app.js[39m
+[31m    at Function.Module._resolveFilename (node:internal/modules/cjs/loader:956:15)[39m
+[31m    at Function.Module._load (node:internal/modules/cjs/loader:804:27)[39m
+[31m    at Module.require (node:internal/modules/cjs/loader:1028:19)[39m
+[31m    at require (node:internal/modules/cjs/helpers:102:18)[39m
+[31m    at Object.<anonymous> (/Users/songminhyeong/Projects/MiniProject_W6/src/app.js:19:26)[39m
+[31m    at Module._compile (node:internal/modules/cjs/loader:1126:14)[39m
+[31m    at Object.Module._extensions..js (node:internal/modules/cjs/loader:1180:10)[39m
+[31m    at Module.load (node:internal/modules/cjs/loader:1004:32)[39m
+[31m    at Function.Module._load (node:internal/modules/cjs/loader:839:12)[39m
+[31m    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:81:12)[39m
+ 2022-10-25 22:10:78 || [ [31merror[39m ] ▶ [31muncaughtException: Cannot find module './middlewares/morganMiddleware'[39m
+[31mRequire stack:[39m
+[31m- /Users/songminhyeong/Projects/MiniProject_W6/src/app.js[39m
+[31mError: Cannot find module './middlewares/morganMiddleware'[39m
+[31mRequire stack:[39m
+[31m- /Users/songminhyeong/Projects/MiniProject_W6/src/app.js[39m
+[31m    at Function.Module._resolveFilename (node:internal/modules/cjs/loader:956:15)[39m
+[31m    at Function.Module._load (node:internal/modules/cjs/loader:804:27)[39m
+[31m    at Module.require (node:internal/modules/cjs/loader:1028:19)[39m
+[31m    at require (node:internal/modules/cjs/helpers:102:18)[39m
+[31m    at Object.<anonymous> (/Users/songminhyeong/Projects/MiniProject_W6/src/app.js:19:26)[39m
+[31m    at Module._compile (node:internal/modules/cjs/loader:1126:14)[39m
+[31m    at Object.Module._extensions..js (node:internal/modules/cjs/loader:1180:10)[39m
+[31m    at Module.load (node:internal/modules/cjs/loader:1004:32)[39m
+[31m    at Function.Module._load (node:internal/modules/cjs/loader:839:12)[39m
+[31m    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:81:12)[39m
+ 2022-10-25 22:10:86 || [ [31merror[39m ] ▶ [31muncaughtException: Cannot find module './middlewares/morganMiddleware'[39m
+[31mRequire stack:[39m
+[31m- /Users/songminhyeong/Projects/MiniProject_W6/src/app.js[39m
+[31mError: Cannot find module './middlewares/morganMiddleware'[39m
+[31mRequire stack:[39m
+[31m- /Users/songminhyeong/Projects/MiniProject_W6/src/app.js[39m
+[31m    at Function.Module._resolveFilename (node:internal/modules/cjs/loader:956:15)[39m
+[31m    at Function.Module._load (node:internal/modules/cjs/loader:804:27)[39m
+[31m    at Module.require (node:internal/modules/cjs/loader:1028:19)[39m
+[31m    at require (node:internal/modules/cjs/helpers:102:18)[39m
+[31m    at Object.<anonymous> (/Users/songminhyeong/Projects/MiniProject_W6/src/app.js:19:26)[39m
+[31m    at Module._compile (node:internal/modules/cjs/loader:1126:14)[39m
+[31m    at Object.Module._extensions..js (node:internal/modules/cjs/loader:1180:10)[39m
+[31m    at Module.load (node:internal/modules/cjs/loader:1004:32)[39m
+[31m    at Function.Module._load (node:internal/modules/cjs/loader:839:12)[39m
+[31m    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:81:12)[39m
+ 2022-10-25 22:10:85 || [ [31merror[39m ] ▶ [31muncaughtException: Cannot find module './middlewares/morganMiddleware'[39m
+[31mRequire stack:[39m
+[31m- /Users/songminhyeong/Projects/MiniProject_W6/src/app.js[39m
+[31mError: Cannot find module './middlewares/morganMiddleware'[39m
+[31mRequire stack:[39m
+[31m- /Users/songminhyeong/Projects/MiniProject_W6/src/app.js[39m
+[31m    at Function.Module._resolveFilename (node:internal/modules/cjs/loader:956:15)[39m
+[31m    at Function.Module._load (node:internal/modules/cjs/loader:804:27)[39m
+[31m    at Module.require (node:internal/modules/cjs/loader:1028:19)[39m
+[31m    at require (node:internal/modules/cjs/helpers:102:18)[39m
+[31m    at Object.<anonymous> (/Users/songminhyeong/Projects/MiniProject_W6/src/app.js:19:26)[39m
+[31m    at Module._compile (node:internal/modules/cjs/loader:1126:14)[39m
+[31m    at Object.Module._extensions..js (node:internal/modules/cjs/loader:1180:10)[39m
+[31m    at Module.load (node:internal/modules/cjs/loader:1004:32)[39m
+[31m    at Function.Module._load (node:internal/modules/cjs/loader:839:12)[39m
+[31m    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:81:12)[39m
+ 2022-10-25 23:10:27 || [ [31merror[39m ] ▶ [31muncaughtException: Cannot find module './middlewares/morganMiddleware'[39m
+[31mRequire stack:[39m
+[31m- /Users/songminhyeong/Projects/MiniProject_W6/src/app.js[39m
+[31mError: Cannot find module './middlewares/morganMiddleware'[39m
+[31mRequire stack:[39m
+[31m- /Users/songminhyeong/Projects/MiniProject_W6/src/app.js[39m
+[31m    at Function.Module._resolveFilename (node:internal/modules/cjs/loader:956:15)[39m
+[31m    at Function.Module._load (node:internal/modules/cjs/loader:804:27)[39m
+[31m    at Module.require (node:internal/modules/cjs/loader:1028:19)[39m
+[31m    at require (node:internal/modules/cjs/helpers:102:18)[39m
+[31m    at Object.<anonymous> (/Users/songminhyeong/Projects/MiniProject_W6/src/app.js:10:26)[39m
+[31m    at Module._compile (node:internal/modules/cjs/loader:1126:14)[39m
+[31m    at Object.Module._extensions..js (node:internal/modules/cjs/loader:1180:10)[39m
+[31m    at Module.load (node:internal/modules/cjs/loader:1004:32)[39m
+[31m    at Function.Module._load (node:internal/modules/cjs/loader:839:12)[39m
+[31m    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:81:12)[39m
+ 2022-10-25 23:10:95 || [ [31merror[39m ] ▶ [31muncaughtException: Cannot find module './middlewares/morganMiddleware'[39m
+[31mRequire stack:[39m
+[31m- /Users/songminhyeong/Projects/MiniProject_W6/src/app.js[39m
+[31mError: Cannot find module './middlewares/morganMiddleware'[39m
+[31mRequire stack:[39m
+[31m- /Users/songminhyeong/Projects/MiniProject_W6/src/app.js[39m
+[31m    at Function.Module._resolveFilename (node:internal/modules/cjs/loader:956:15)[39m
+[31m    at Function.Module._load (node:internal/modules/cjs/loader:804:27)[39m
+[31m    at Module.require (node:internal/modules/cjs/loader:1028:19)[39m
+[31m    at require (node:internal/modules/cjs/helpers:102:18)[39m
+[31m    at Object.<anonymous> (/Users/songminhyeong/Projects/MiniProject_W6/src/app.js:10:26)[39m
+[31m    at Module._compile (node:internal/modules/cjs/loader:1126:14)[39m
+[31m    at Object.Module._extensions..js (node:internal/modules/cjs/loader:1180:10)[39m
+[31m    at Module.load (node:internal/modules/cjs/loader:1004:32)[39m
+[31m    at Function.Module._load (node:internal/modules/cjs/loader:839:12)[39m
+[31m    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:81:12)[39m
+ 2022-10-25 23:10:52 || [ [31merror[39m ] ▶ [31muncaughtException: app.use() requires a middleware function[39m
+[31mTypeError: app.use() requires a middleware function[39m
+[31m    at Function.use (/Users/songminhyeong/Projects/MiniProject_W6/node_modules/express/lib/application.js:217:11)[39m
+[31m    at Object.<anonymous> (/Users/songminhyeong/Projects/MiniProject_W6/src/app.js:22:5)[39m
+[31m    at Module._compile (node:internal/modules/cjs/loader:1126:14)[39m
+[31m    at Object.Module._extensions..js (node:internal/modules/cjs/loader:1180:10)[39m
+[31m    at Module.load (node:internal/modules/cjs/loader:1004:32)[39m
+[31m    at Function.Module._load (node:internal/modules/cjs/loader:839:12)[39m
+[31m    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:81:12)[39m
+[31m    at node:internal/main/run_main_module:17:47[39m
+ 2022-10-25 23:10:43 || [ [31merror[39m ] ▶ [31muncaughtException: Cannot find module 'morgan'[39m
+[31mRequire stack:[39m
+[31m- /Users/songminhyeong/Projects/MiniProject_W6/src/middlewares/morganMiddleware.js[39m
+[31m- /Users/songminhyeong/Projects/MiniProject_W6/src/app.js[39m
+[31mError: Cannot find module 'morgan'[39m
+[31mRequire stack:[39m
+[31m- /Users/songminhyeong/Projects/MiniProject_W6/src/middlewares/morganMiddleware.js[39m
+[31m- /Users/songminhyeong/Projects/MiniProject_W6/src/app.js[39m
+[31m    at Function.Module._resolveFilename (node:internal/modules/cjs/loader:956:15)[39m
+[31m    at Function.Module._load (node:internal/modules/cjs/loader:804:27)[39m
+[31m    at Module.require (node:internal/modules/cjs/loader:1028:19)[39m
+[31m    at require (node:internal/modules/cjs/helpers:102:18)[39m
+[31m    at Object.<anonymous> (/Users/songminhyeong/Projects/MiniProject_W6/src/middlewares/morganMiddleware.js:1:16)[39m
+[31m    at Module._compile (node:internal/modules/cjs/loader:1126:14)[39m
+[31m    at Object.Module._extensions..js (node:internal/modules/cjs/loader:1180:10)[39m
+[31m    at Module.load (node:internal/modules/cjs/loader:1004:32)[39m
+[31m    at Function.Module._load (node:internal/modules/cjs/loader:839:12)[39m
+[31m    at Module.require (node:internal/modules/cjs/loader:1028:19)[39m
+ 2022-10-25 23:10:55 || [ [31merror[39m ] ▶ [31muncaughtException: Cannot find module 'morgan'[39m
+[31mRequire stack:[39m
+[31m- /Users/songminhyeong/Projects/MiniProject_W6/src/middlewares/morganMiddleware.js[39m
+[31m- /Users/songminhyeong/Projects/MiniProject_W6/src/app.js[39m
+[31mError: Cannot find module 'morgan'[39m
+[31mRequire stack:[39m
+[31m- /Users/songminhyeong/Projects/MiniProject_W6/src/middlewares/morganMiddleware.js[39m
+[31m- /Users/songminhyeong/Projects/MiniProject_W6/src/app.js[39m
+[31m    at Function.Module._resolveFilename (node:internal/modules/cjs/loader:956:15)[39m
+[31m    at Function.Module._load (node:internal/modules/cjs/loader:804:27)[39m
+[31m    at Module.require (node:internal/modules/cjs/loader:1028:19)[39m
+[31m    at require (node:internal/modules/cjs/helpers:102:18)[39m
+[31m    at Object.<anonymous> (/Users/songminhyeong/Projects/MiniProject_W6/src/middlewares/morganMiddleware.js:1:16)[39m
+[31m    at Module._compile (node:internal/modules/cjs/loader:1126:14)[39m
+[31m    at Object.Module._extensions..js (node:internal/modules/cjs/loader:1180:10)[39m
+[31m    at Module.load (node:internal/modules/cjs/loader:1004:32)[39m
+[31m    at Function.Module._load (node:internal/modules/cjs/loader:839:12)[39m
+[31m    at Module.require (node:internal/modules/cjs/loader:1028:19)[39m

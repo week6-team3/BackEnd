@@ -1,4 +1,4 @@
-const { Users, Posts, Checklist } = require('../../models');
+const { Users, Posts, Checklist, Likes } = require('../../models');
 
 class PostRepository {
   // 1. 내가 작성한 게시글 조회
@@ -34,6 +34,12 @@ class PostRepository {
   findCheckList = async (postId) => {
     const myCheckList = await Checklist.findAll({ where: { postId }, attributes: ['checkId', 'content', 'isDone'] });
     return myCheckList;
+  };
+
+  // 2-2. 로그인한 유저의 해당 게시글 좋아요 상태 확인
+  findMyLike = async (postId) => {
+    const isMyLike = await Likes.findOne({ where: { postId } });
+    return isMyLike;
   };
 
   // 3. 게시글 작성
