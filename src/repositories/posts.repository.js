@@ -30,17 +30,6 @@ class PostRepository {
     return myOnePost;
   };
 
-  // 3. 게시글 작성
-  createPost = async (userId, title, travel) => {
-    const newPost = await Posts.create({
-      userId,
-      title,
-      travel,
-    });
-    console.log(newPost.postId);
-    return newPost;
-  };
-
   // 2-1. 게시글에 달린 체크리스트 조회
   findCheckList = async (postId) => {
     const myCheckList = await Checklist.findAll({ where: { postId }, attributes: ['checkId', 'content', 'isDone'] });
@@ -60,10 +49,7 @@ class PostRepository {
 
   // 4. 게시글 수정
   updatePost = async (title, travel, postId) => {
-    const [updatePost] = await Posts.update(
-      { title, travel },
-      { where: { postId: postId } }
-    );
+    const [updatePost] = await Posts.update({ title, travel }, { where: { postId: postId } });
     return updatePost;
   };
 
@@ -75,4 +61,3 @@ class PostRepository {
 }
 
 module.exports = PostRepository;
-
