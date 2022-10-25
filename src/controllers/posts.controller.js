@@ -32,7 +32,7 @@ class PostController {
     // }
     const { title, travel } = req.body;
     if (!title) res.status(400).send({ message: '제목을 입력해주세요.' });
-    if (!travel) res.status(400).send({ message: '여행장소(국내/해외)를 선택해주세요.' });
+    // if (!travel) res.status(400).send({ message: '여행장소(국내/해외)를 선택해주세요.' });
 
     const { userId } = res.locals.user;
     const newPost = await this.postService.createPost(userId, title, travel);
@@ -40,18 +40,18 @@ class PostController {
   };
 
   // 4. 게시글 수정 + checklist
-  updatePost = async (req,res) => {
-    const {title,travel} = req.body;
+  updatePost = async (req, res) => {
+    const { title, travel } = req.body;
     const { postId } = req.params;
     const { userId } = res.locals.user;
 
     if (!title) res.status(400).send({ message: '제목을 입력해주세요.' });
     // if (!travel) res.status(400).send({ message: '여행장소(국내/해외)를 선택해주세요.' });
 
-    const updatePostResult = await this.postService.updatePost(title,travel,postId,userId);
+    const updatePostResult = await this.postService.updatePost(title, travel, postId, userId);
 
-    res.status(200).send(updatePostResult)
-  }
+    res.status(200).send(updatePostResult);
+  };
 
   // 5. 게시글 삭제
   deletePost = async (req, res) => {
@@ -65,6 +65,4 @@ class PostController {
   };
 }
 
-
 module.exports = PostController;
-

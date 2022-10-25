@@ -29,7 +29,7 @@ module.exports = {
       },
       sharing: {
         allowNull: false,
-        type: Sequelize.STRING,
+        type: Sequelize.BOOLEAN,
         defaultValue: false,
       },
       likeCount: {

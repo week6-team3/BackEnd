@@ -7,8 +7,8 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'userId',
         sourceKey: 'userId',
       });
-      this.hasMany(models.Comments, { foreignKey: 'commentId' }); 
-      this.hasMany(models.Likes, { foreignKey: 'likeId' })
+      this.hasMany(models.Comments, { foreignKey: 'commentId' });
+      this.hasMany(models.Likes, { foreignKey: 'likeId' });
       this.hasMany(models.Checklist, { foreignKey: 'checkId', targetKey: 'checkId' });
     }
   }
@@ -50,7 +50,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       travel: {
         allowNull: false,
-        type: DataTypes.STRING,
+        type: DataTypes.BOOLEAN,
       },
       createdAt: {
         allowNull: false,
@@ -70,4 +70,3 @@ module.exports = (sequelize, DataTypes) => {
   );
   return Posts;
 };
-

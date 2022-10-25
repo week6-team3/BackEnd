@@ -40,8 +40,7 @@ class SharingService {
       const existPost = await this.sharingRepository.findOnePost(postId);
       if (!existPost) throw new Error('존재하지 않는 게시글입니다.');
       let isMyPost = '';
-      if (userId && existPost.userId === userId) isMyPost = 'true';
-      else isMyPost = 'false';
+      userId && existPost.userId === userId ? (isMyPost = true) : (isMyPost = false);
       const myCheckList = await this.sharingRepository.findCheckList(postId);
       return {
         postId: existPost.postId,
