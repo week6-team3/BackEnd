@@ -24,13 +24,13 @@ module.exports = {
       },
       completion: {
         allowNull: false,
-        type: Sequelize.STRING,
-        defaultValue: 'false',
+        type: Sequelize.BOOLEAN,
+        defaultValue: false,
       },
       sharing: {
         allowNull: false,
         type: Sequelize.STRING,
-        defaultValue: 'false',
+        defaultValue: false,
       },
       likeCount: {
         allowNull: false,
@@ -39,7 +39,7 @@ module.exports = {
       },
       travel: {
         allowNull: false,
-        type: Sequelize.STRING,
+        type: Sequelize.BOOLEAN,
       },
       createdAt: {
         allowNull: false,

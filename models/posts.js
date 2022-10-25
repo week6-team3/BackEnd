@@ -34,13 +34,13 @@ module.exports = (sequelize, DataTypes) => {
       },
       completion: {
         allowNull: false,
-        type: DataTypes.STRING,
-        defaultValue: 'false',
+        type: DataTypes.BOOLEAN,
+        defaultValue: false,
       },
       sharing: {
         allowNull: false,
-        type: DataTypes.STRING,
-        defaultValue: 'false',
+        type: DataTypes.BOOLEAN,
+        defaultValue: false,
       },
       likeCount: {
         allowNull: false,
@@ -49,7 +49,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       travel: {
         allowNull: false,
-        type: DataTypes.STRING,
+        type: DataTypes.BOOLEAN,
       },
       createdAt: {
         allowNull: false,
