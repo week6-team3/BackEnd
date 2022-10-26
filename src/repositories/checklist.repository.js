@@ -1,26 +1,22 @@
 const { Checklist } = require('../../models');
 
 class CheckListRepository {
-  constructor() {
-    this.Checklist = Checklist;
-  }
-
   findOneCheckList = async (postId, content) => {
-    const findOneCheckListResult = await Checklist.findOne({
-      where: { postId: postId, content: content },
-      raw: true,
+    console.log(1);
+    return await Checklist.findOne({
+      where: { postId, content },
     });
-    return findOneCheckListResult;
   };
 
   createCheckList = async (content, isDone, postId) => {
     try {
-      const findOneCheckListResult = await this.findOneCheckList(postId, content);
-      if (findOneCheckListResult) {
-        throw new Error('이미 등록했어요!');
-      }
+      console.log(2);
+      // const findOneCheckListResult = await findOneCheckList(postId, content);
+      // if (findOneCheckListResult) {
+      //   throw new Error('이미 등록했어요!');
+      // }
 
-      const createCheckListResult = await this.Checklist.create({
+      const createCheckListResult = await Checklist.create({
         content: content,
         isDone: isDone,
         postId: postId,
@@ -35,7 +31,7 @@ class CheckListRepository {
   deleteCheckList = async (checkId) => {
     // 삭제 만들어야한다잉
     try {
-      const deleteCheckListResult = await this.Checklist.destroy({ where: { checkId: checkId } });
+      const deleteCheckListResult = await Checklist.destroy({ where: { checkId: checkId } });
       return deleteCheckListResult;
     } catch (error) {
       return { errorMessage: error.message };
@@ -43,7 +39,7 @@ class CheckListRepository {
   };
 
   updateCheckList = async (checkId, isDone) => {
-    const updateCheckListResult = await this.Checklist.update({ isDone: isDone }, { where: { checklistId: checkId } });
+    const updateCheckListResult = await Checklist.update({ isDone: isDone }, { where: { checklistId: checkId } });
     return updateCheckListResult;
   };
 }

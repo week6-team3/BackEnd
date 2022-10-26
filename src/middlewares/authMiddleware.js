@@ -1,27 +1,32 @@
 let jwtService = require('../services/jwt.service');
-let UsersRepository = require('../repositories/users.repository');
+// let UsersRepository = require('../repositories/users.repository');
 const bcrypt = require('bcrypt');
 jwtService = new jwtService();
-UsersRepository = new UsersRepository();
 
 module.exports = async (req, res, next) => {
   try {
-    // 
+    //
+
+    // UsersRepository = new UsersRepository();
+
     console.log('미들웨어 실행이다잉@@@@@@@');
-    
+
     // console.log(req);
     // let accessToken = req.cookies.AccessToken;
 
-
     // authorization 에서 받아온 토큰 값 저장
-    const accessToken = req.headers.authorization;
-     
-    console.log(accessToken);
-    
-    let userId;
+    console.log(req.headers);
+    const { authorization } = req.headers;
+    const [authType, accessToken] = (authorization || '').split(' ');
+    if (!accessToken || authType !== 'Bearer') {
+      res.status(401).send({
+        errorMessage: '로그인 후 이용 가능한 기능입니다.',
+      });
+    }
+    const userId = await jwtService.validateAccessToken(accessToken);
     // AccessToken 만료 여부 확인
-    let result = await jwtService.validateAccessToken(accessToken);
-    console.log('AccessToken 토큰 :::> '+result)
+    // let result = await jwtService.validateAccessToken(accessToken);
+    // console.log('AccessToken 토큰 :::> ' + result);
 
     // AccessToken 만료 시 RefreshToken을 검증하여 AccessToken 재발급
 
@@ -29,7 +34,7 @@ module.exports = async (req, res, next) => {
     if (false) {
       console.log('AccessToken 만료, 재발급 시작');
       const refreshToken = req.cookies['RefreshToken'];
-      
+
       // RefreshToken 유효기간 확인
       result = await jwtService.validateRefreshToken(refreshToken);
 
@@ -59,10 +64,11 @@ module.exports = async (req, res, next) => {
     }
 
     // 선생님들께서 사용하실 값
-    res.locals.user = { userId: userId };
+    res.locals.user = { userId };
+
     next();
   } catch (error) {
-    console.log(error)
+    console.log(error);
     return res.status(403).send({
       errorMessage: '토큰 인증이 정상적이지 않습니다.',
     });

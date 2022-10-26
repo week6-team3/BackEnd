@@ -40,7 +40,6 @@ class PostService {
       let isMyPost;
       userId && existPost.userId === userId ? (isMyPost = true) : (isMyPost = false);
       const myCheckList = await this.postRepository.findCheckList(postId);
-
       return {
         postId: existPost.postId,
         userId: existPost.userId,

@@ -1,40 +1,39 @@
-const CheckListRepository =  require('../repositories/checklist.repository');
+const CheckListRepository = require('../repositories/checklist.repository');
 
 class CheckListService {
+  constructor() {
+    this.checkListRepository = new CheckListRepository();
+  }
 
-    constructor(){
-        this.checkListRepository = new CheckListRepository();
+  createCheckListService = async (content, isDone, postId) => {
+    const existList = await this.checkListRepository.findOneCheckList(postId, content);
+
+    if (existList) {
+      throw new Error('이미 등록했어요!');
     }
 
-    createCheckListService = async (content, isDone, postId) => {
-        
-        const createCheckListResult = await this.checkListRepository.createCheckList(content, isDone, postId);
+    const createCheckListResult = await this.checkListRepository.createCheckList(content, isDone, postId);
 
-        return createCheckListResult
+    return createCheckListResult;
+  };
+
+  deleteCheckListService = async (checkId) => {
+    const deleteCheckListResult = await this.checkListRepository.deleteCheckList(checkId);
+
+    if (!deleteCheckListResult) {
+      return { message: '삭제에 실패했습니다.' };
     }
+    return { message: '데이터 삭제 완료' };
+  };
 
-    deleteCheckListService = async (checkId) => {
+  updateCheckListService = async (checkId, isDone) => {
+    const [updateCheckListResult] = await this.checkListRepository.updateCheckList(checkId, isDone);
 
-        const deleteCheckListResult = await this.checkListRepository.deleteCheckList(checkId);
-        
-        if(!deleteCheckListResult){
-            return  { message: '삭제에 실패했습니다.' }
-        }
-        return { message: '데이터 삭제 완료' }
-
+    if (!updateCheckListResult) {
+      return { message: '수정에 실패했습니다.' };
     }
-
-    updateCheckListService = async (checkId, isDone) => {
-
-        const [ updateCheckListResult ] = await this.checkListRepository.updateCheckList(checkId, isDone);
-
-        if(!updateCheckListResult){
-            return  { message: '수정에 실패했습니다.' }
-        }
-        return { message: '데이터 수정 완료' }
-
-    }
-
+    return { message: '데이터 수정 완료' };
+  };
 }
 
-module.exports = CheckListService ; 
+module.exports = CheckListService;
