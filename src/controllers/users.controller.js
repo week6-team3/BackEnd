@@ -26,7 +26,7 @@ class UserController {
 
     // 회원가입
     createUserController = async (req,res)=>{
-        
+        console.log('아ㄴ녕하세요 회ㄴㅏ입입니다.');
         try {
             const { nickname, email, password,confirm } = await userSchema.validateAsync(
                 req.body
@@ -35,10 +35,11 @@ class UserController {
                 const joiError = error.details[0].message.split('with')[0].replace(/"/g,'');
                 throw new Error(`${joiError}형식을 확인해주세요`)
             });
+            console.log(nickname, email, password,confirm)
             
             // 비밀번호 일치여부 확인
             if(password !== confirm) throw new Error('비밀번호가 일치하지 않습니다.');
-
+            console.log('일치해유')
             // 회원가입 서비스 호출 
             const createUserResult = await this.userService.createUserService(nickname,email,password);
             res.status(200).send(createUserResult)
@@ -49,7 +50,7 @@ class UserController {
     }
 
     loginUserController = async (req,res)=>{
-
+        console.log('로그인 시작해유 ~~~~~~~');
         try {
             // 로그인 정보는 joi로 검증하지 않습니다 .. 유저 정보를 유추할 수 있다나 뭐라나 ..
             // 빈 값만 확인 ..
@@ -62,33 +63,35 @@ class UserController {
             });
 
             const loginUserResult = await this.userService.loginUserService(email, password);
-
-            // 로그인 성공 시 쿠키에 토큰 저장
-            if(!loginUserResult.errorMessage){
-                // console.log('1');
-                // // RefreshToken 쿠키 저장
-                // const refreshDate = new Date();
-                // refreshDate.setDate(refreshDate.getDate()+7);
-                // res.cookie('RefreshToken', `Bearer ${loginUserResult.RefreshToken}`, {
-                //     expires: refreshDate // 7일
-                // });
-                // console.log('2');
-                // // accessToken 쿠키 생성 
-                // const accessDate = new Date();
-                // accessDate.setDate(accessDate.getDate()+3);
-                // res.cookie('AccessToken', `Bearer ${loginUserResult.AccessToken}`, {
-                //     // expires: new Date(Date.now() + 10800000), // 3시간
-                //     expires : accessDate
-                // });
+            
+            // 로그인 성공 시 쿠키에 토큰 저장 -> body로 전송
+            // if(!loginUserResult.errorMessage){
+            if(false){   
+                // RefreshToken 쿠키 저장
+                const refreshDate = new Date();
+                refreshDate.setDate(refreshDate.getDate()+7);
+                res.cookie('RefreshToken', `${loginUserResult.RefreshToken}`, {
+                    expires: refreshDate // 7일
+                });
+    
+                // accessToken 쿠키 생성 
+                const accessDate = new Date();
+                accessDate.setDate(accessDate.getDate()+3);
+                res.cookie('AccessToken', `${loginUserResult.AccessToken}`, {
+                    // expires: new Date(Date.now() + 10800000), // 3시간
+                    expires : accessDate
+                });
             }
-            console.log('::::::>');
-            console.log(loginUserResult.AccessToken,loginUserResult.RefreshToken)
-            loginUserResult.errorMessage ? res.status(200).send({errorMessage:loginUserResult.errorMessage}) : res.status(200).send({nickname:loginUserResult.usernickname});
+
+            console.log(loginUserResult)
+            
+            loginUserResult.errorMessage ? res.status(200).send({errorMessage:loginUserResult.errorMessage}) : res.status(200).send({loginUserResult,message:'로그인을 성공하셨습니다!'});
             
         } catch (error) {
             console.log(error)
             res.status(400).send({errorMessage:error.message})
         }
+        
     }
 
 }

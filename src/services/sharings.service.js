@@ -67,6 +67,9 @@ class SharingService {
   sharePost = async (userId, postId) => {
     try {
       const existPost = await this.postRepository.findOnePost(postId);
+      console.log(userId, postId)
+      console.log(typeof userId,typeof postId)
+      console.log(existPost.userId, typeof existPost.userId);
       if (!existPost) throw new Error('존재하지 않는 게시글입니다.');
       if (existPost.userId !== userId) throw new Error('작성자 본인만 공유할 수 있습니다.');
 
