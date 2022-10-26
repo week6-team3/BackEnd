@@ -1,0 +1,1 @@
+SELECT * FROM `myToDoList`.`Checklists` LIMIT 1000;
