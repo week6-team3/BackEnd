@@ -6,11 +6,13 @@ UsersRepository = new UsersRepository();
 
 module.exports = async (req, res, next) => {
   try {
+    console.log('asdfasdf');
     let accessToken = req.cookies['AccessToken'];
     let userId;
     // AccessToken 만료 여부 확인
     let result = await jwtService.validateAccessToken(accessToken.split(' ')[1]);
     userId = result.userId;
+    console.log(userId);
     // AccessToken 만료 시 RefreshToken을 검증하여 AccessToken 재발급
 
     if (!result) {
@@ -46,6 +48,7 @@ module.exports = async (req, res, next) => {
 
     // 선생님들께서 사용하실 값
     res.locals.user = { userId: userId };
+    console.log(userId);
     next();
   } catch (error) {
     return res.status(403).send({
@@ -53,4 +56,3 @@ module.exports = async (req, res, next) => {
     });
   }
 };
-

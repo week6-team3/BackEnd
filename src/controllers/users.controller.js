@@ -57,6 +57,9 @@ class UserController {
 
       // 로그인 성공 시 쿠키에 토큰 저장
       if (!loginUserResult.errorMessage) {
+        // const AccessToken = `Bearer ${loginUserResult.AccessToken}`
+        // const RefreshToken = `Bearer ${loginUserResult.RefreshToken}`
+
         // RefreshToken 쿠키 저장
         const refreshDate = new Date();
         refreshDate.setDate(refreshDate.getDate() + 7);
