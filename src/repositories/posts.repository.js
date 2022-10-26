@@ -54,7 +54,6 @@ class PostRepository {
   };
 
   // 4. 게시글 수정
-<<<<<<< HEAD
   updatePost = async (title, postId) => {
     const [updatePost] = await Posts.update({ title }, { where: { postId: postId } });
     return updatePost;
@@ -64,10 +63,6 @@ class PostRepository {
   updateCompletionPost = async (completion, postId) => {
     console.log('result com' + completion);
     const [updatePost] = await Posts.update({ completion }, { where: { postId: postId } });
-=======
-  updatePost = async (title, travel, postId) => {
-    const [updatePost] = await Posts.update({ title, travel }, { where: { postId: postId } });
->>>>>>> minhyeong2
     return updatePost;
   };
 

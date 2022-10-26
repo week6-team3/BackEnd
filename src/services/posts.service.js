@@ -39,13 +39,10 @@ class PostService {
       let isMyPost, isMyLike;
       userId && existPost.userId === userId ? (isMyPost = true) : (isMyPost = false);
       const myCheckList = await this.postRepository.findCheckList(postId);
-<<<<<<< HEAD
-=======
 
       let ismyLike = await this.postRepository.findMyLike(postId);
       ismyLike ? (isMyLike = true) : (isMyLike = false);
 
->>>>>>> minhyeong2
       return {
         postId: existPost.postId,
         userId: existPost.userId,

@@ -40,8 +40,4 @@ class jwtService {
   };
 }
 
-<<<<<<< HEAD
 module.exports = jwtService;
-=======
-module.exports = jsonwebtoken;
->>>>>>> minhyeong2
