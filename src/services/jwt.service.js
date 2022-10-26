@@ -4,14 +4,14 @@ require("dotenv").config();
 class jsonwebtoken {
   // Access Token 생성
   createAccessToken = async (userId) => {
-    return jwt.sign({ 
+    jwt.sign({ 
       userId: userId 
     }, process.env.SECRET_KEY, {
       expiresIn: "3h",
     });
   };
   // Refresh Token 생성
-  createRefreshToken = async (userId) => {
+  createRefreshToken = async () => {
     return jwt.sign({}, process.env.SECRET_KEY, { expiresIn: "7d" });
   };
 
