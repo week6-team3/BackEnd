@@ -28,16 +28,16 @@ class PostController {
   // 3. 게시글 작성
   createPost = async (req, res) => {
 
-    const { file } = req;
-    const {filename, path, mimetype} = file;
+    // const { file } = req;
+    // const {filename, path, mimetype} = file;
     
     const { title, travel } = req.body;
     if (!title) res.status(400).send({ message: '제목을 입력해주세요.' });
 
     const { userId } = res.locals.user;
-    const newPost = await this.postService.createPost(userId, title, travel, filename, path);
-
-    return res.status(201).send(newPost).end();
+    console.log(userId); // undefined 뜬다ㅋㅋ
+    const newPost = await this.postService.createPost(userId, title, travel);
+    return res.status(201).send(newPost);
   };
 
   // 4. 게시글 수정 + checklist

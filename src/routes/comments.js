@@ -6,7 +6,7 @@ const CommentController = require('../controllers/comments.controller');
 const commentController = new CommentController;
 
 router.get('/:postId', authMiddleware, commentController.getComment);
-router.post('/:postId', authMiddleware, commentController.createComment);
+router.post('/:postId', commentController.createComment);
 router.put('/:commentId', authMiddleware, commentController.updateComment);
 router.delete('/:commentId', authMiddleware, commentController.deleteComment);
 
