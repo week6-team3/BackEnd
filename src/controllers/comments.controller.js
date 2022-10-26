@@ -1,66 +1,67 @@
 const CommentService = require('../services/comments.service');
 
 class CommentController {
-    commentService = new CommentService();
+  commentService = new CommentService();
 
-    // 댓글 보기
-    getComment = async (req, res) => {
-        try{
-            const { postId } = req.params;
+  // 댓글 보기
+  getComment = async (req, res) => {
+    try {
+      const { postId } = req.params;
 
-            const comment = await this.commentService.getComment(postId);
+      const comment = await this.commentService.getComment(postId);
 
-            res.status(200).json({ data: comment });
-        } catch(err) {
-            console.log(err);
-            return { errorMessage: err.message };
-        }
+      res.status(200).json({ data: comment });
+    } catch (err) {
+      console.log(err);
+      return { errorMessage: err.message };
     }
+  };
 
-    // 댓글 생성
-    createComment = async (req, res) => {
-        try {
-            const { userId } = res.locals.user;
-            const { postId } = req.params;
-            const { comment } = req.body;
+  // 댓글 생성
+  createComment = async (req, res) => {
+    try {
+      // const { userId } = res.locals.user;
+      const userId = 1;
+      const { postId } = req.params;
+      const { comment } = req.body;
 
-            await this.commentService.createComment(userId, postId, comment);
+      await this.commentService.createComment(userId, postId, comment);
 
-            res.status(201).json({ message: "댓글을 작성하였습니다."});
-        } catch(err) {
-            console.log(err);
-            return { errorMessage: err.message };
-        }
-    };
+      res.status(201).json({ message: '댓글을 작성하였습니다.' });
+    } catch (err) {
+      console.log(err);
+      return { errorMessage: err.message };
+    }
+  };
 
-    // 댓글 수정
-    updateComment = async (req, res) => {
-        try {
-            const { commentId } = req.params;
-            const { comment } = req.body;
+  // 댓글 수정
+  updateComment = async (req, res) => {
+    try {
+      const { commentId } = req.params;
+      const { comment } = req.body;
 
-            const updateResult = await this.commentService.updateComment(commentId, comment);
+      const updateResult = await this.commentService.updateComment(commentId, comment);
 
-            res.status(200).json({ result: updateResult, message: "댓글을 수정하였습니다."});
-        } catch(err) {
-            console.log(err);
-            return { errorMessage: err.message };
-        }
-    };
+      res.status(200).json({ result: updateResult, message: '댓글을 수정하였습니다.' });
+    } catch (err) {
+      console.log(err);
+      return { errorMessage: err.message };
+    }
+  };
 
-    // 댓글 삭제
-    deleteComment = async (req, res) => {
-        try {
-            const { commentId } = req.params;
+  // 댓글 삭제
+  deleteComment = async (req, res) => {
+    try {
+      const { commentId } = req.params;
 
-            const deleteResult = await this.commentService.deleteComment(commentId);
+      const deleteResult = await this.commentService.deleteComment(commentId);
 
-            res.status(200).json({ result: deleteResult, message: "댓글을 삭제하였습니다."})
-        } catch(err) {
-            console.log(err);
-            return { errorMessage: err.message };
-        }
-    };
+      res.status(200).json({ result: deleteResult, message: '댓글을 삭제하였습니다.' });
+    } catch (err) {
+      console.log(err);
+      return { errorMessage: err.message };
+    }
+  };
 }
 
 module.exports = CommentController;

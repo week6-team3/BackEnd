@@ -1,0 +1,20 @@
+{
+    "keep": {
+        "days": false,
+        "amount": 3
+    },
+    "auditLog": "/Users/songminhyeong/Projects/MiniProject_W6/src/config/logs/.6957b2433b7a91ee1954ed152caffcd990c5391f-audit.json",
+    "files": [
+        {
+            "date": 1666704626215,
+            "name": "/Users/songminhyeong/Projects/MiniProject_W6/src/config/logs/2022-10-25.log",
+            "hash": "4a242e0e390bb1103aa02dfe0b71cab057ff3b4e4636f4d3d49b7d9bc9c2a974"
+        },
+        {
+            "date": 1666710580710,
+            "name": "/Users/songminhyeong/Projects/MiniProject_W6/src/config/logs/2022-10-26.log",
+            "hash": "658b61d57c10331a95e983a7e463e2882dca5f40fba62694e393c0766d725d4e"
+        }
+    ],
+    "hashType": "sha256"
+}

@@ -65,7 +65,6 @@ module.exports = async (req, res, next) => {
 
     // 선생님들께서 사용하실 값
     res.locals.user = { userId };
-
     next();
   } catch (error) {
     console.log(error);

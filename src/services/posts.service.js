@@ -18,7 +18,6 @@ class PostService {
           title: post.title,
           likeCount: post.likeCount,
           travel: post.travel,
-          completion: post.completion,
           sharing: post.sharing,
           createdAt: post.createdAt,
           updatedAt: post.updatedAt,
@@ -37,9 +36,16 @@ class PostService {
     try {
       const existPost = await this.postRepository.findOnePost(postId);
       if (!existPost) throw new Error('존재하지 않는 게시글입니다.');
-      let isMyPost;
+      let isMyPost, isMyLike;
       userId && existPost.userId === userId ? (isMyPost = true) : (isMyPost = false);
       const myCheckList = await this.postRepository.findCheckList(postId);
+<<<<<<< HEAD
+=======
+
+      let ismyLike = await this.postRepository.findMyLike(postId);
+      ismyLike ? (isMyLike = true) : (isMyLike = false);
+
+>>>>>>> minhyeong2
       return {
         postId: existPost.postId,
         userId: existPost.userId,
@@ -49,7 +55,9 @@ class PostService {
         likeCount: existPost.likeCount,
         travel: existPost.travel,
         sharing: existPost.sharing,
+        completion: existPost.completion,
         isMyPost: isMyPost,
+        isMyLike: isMyLike,
         createdAt: existPost.createdAt,
         updatedAt: existPost.updatedAt,
         checkList: myCheckList,

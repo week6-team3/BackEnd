@@ -2,23 +2,30 @@ const express = require('express');
 const routes = require('./routes');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
-const setCorsOptions = require('./middlewares/setCorsHeader');
-var fs = require('fs');
-const { NONAME } = require('dns');
-
+const cors = require('cors');
 const app = express();
-const PORT = 3030;
+const PORT = 3001;
+const winston = require('winston');
+const logger = require('./config/winston');
+global.logger || (global.logger = require('./config/winston')); // → 윈스턴 로거를 전역에서 사용
+const morganMiddleware = require('./middlewares/morganMiddleware');
 
-const corsOptions = {
+// const {
+//   errorHandler,
+//   errorLogger,
+// } = require('./middlewares/error-hander.middleware');
+
+// 나중에 프론트에서 배포된 주소로 whitelist 추가할 것
+let corsOptions = {
+  // origin: 'https://pickup-week6.vercel.app/'
   origin: true,
-  // origin: 'https://pickup-week6.vercel.app',
   credentials: true,
 };
+
 app.use(cors(corsOptions));
-
-app.use(setCorsOptions.corsHeader);
-
+app.use(morganMiddleware);
 app.use([express.json(), express.urlencoded({ extended: false }), cookieParser()]); // body-parser 전역 미들웨어
+
 app.use('/', routes); // 라우터 등록
 
 // app.use(errorLogger); // Error Logger
