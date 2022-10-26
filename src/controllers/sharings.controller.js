@@ -23,7 +23,7 @@ class SharingController {
   // 3. 게시글 공유하기
   sharePost = async (req, res) => {
     const { postId } = req.body;
-
+    console.log(postId);
     const { userId } = res.locals.user;
 
     const sharePost = await this.sharingService.sharePost(userId, postId);

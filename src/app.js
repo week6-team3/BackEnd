@@ -10,8 +10,9 @@ const app = express();
 const PORT = 3030;
 
 const corsOptions = {
-  origin: 'https://pickup-week6.vercel.app',
-  // credentials: true,
+  origin: true,
+  // origin: 'https://pickup-week6.vercel.app',
+  credentials: true,
 };
 app.use(cors(corsOptions));
 

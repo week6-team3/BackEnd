@@ -40,18 +40,30 @@ class PostController {
     return res.status(201).send(newPost);
   };
 
-  // 4. 게시글 수정 + checklist
+  // 4. 게시글 수정 (title 수정, completion 수정)
   updatePost = async (req, res) => {
-    const { title, travel } = req.body;
-    const { postId } = req.params;
-    const { userId } = res.locals.user;
+    try {
+      const { title } = req.body;
+      const { postId } = req.params;
+      const { userId } = res.locals.user;
 
-    if (!title) res.status(400).send({ message: '제목을 입력해주세요.' });
-    // if (!travel) res.status(400).send({ message: '여행장소(국내/해외)를 선택해주세요.' });
-
-    const updatePostResult = await this.postService.updatePost(title, travel, postId, userId);
-
-    res.status(200).send(updatePostResult);
+      if (title === undefined) {
+        console.log('completion 수정!!');
+        const updatePostResult = await this.postService.updateCompletionPost(postId, userId);
+        res.status(200).send(updatePostResult);
+      } else if (!title || /^[\s]+/.test(title)) {
+        // 공백 시작 혹은 title 값이 없는 경우
+        if (!title) res.status(400).send({ message: '제목을 입력해주세요.' });
+        if (/^[\s]+/.test(title)) res.status(400).send({ message: '제목은 공백으로 시작할 수 없습니다.' });
+      } else if (title) {
+        console.log('title 수정!!');
+        const updatePostResult = await this.postService.updateTitlePost(title, postId, userId);
+        res.status(200).send(updatePostResult);
+      }
+    } catch (error) {
+      console.error(error);
+      throw new Error('게시글 수정 실패 !');
+    }
   };
 
   // 5. 게시글 삭제
