@@ -1,5 +1,6 @@
 const express = require('express');
 const routes = require('./routes');
+const cors = require('cors');
 const cookieParser = require('cookie-parser');
 
 // const {
@@ -8,8 +9,16 @@ const cookieParser = require('cookie-parser');
 // } = require('./middlewares/error-hander.middleware');
 
 const app = express();
-const PORT = 3000;
+const PORT = 3030;
 
+// app.use(cors());
+
+
+app.use(cors({
+  origin : true,
+  // origin : ['localhost:3000','https://01b3-218-146-51-90.jp.ngrok.io'],
+  credentials : true 
+}));
 app.use([express.json(),express.urlencoded({ extended: false }),cookieParser(),]); // body-parser 전역 미들웨어
 app.use('/', routes); // 라우터 등록
 // app.use(errorLogger); // Error Logger
