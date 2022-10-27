@@ -56,7 +56,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       travel: {
         allowNull: false,
-        type: DataTypes.BOOLEAN,
+        type: DataTypes.STRING,
       },
       createdAt: {
         allowNull: false,

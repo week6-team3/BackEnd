@@ -45,7 +45,7 @@ module.exports = {
       },
       travel: {
         allowNull: false,
-        type: Sequelize.BOOLEAN,
+        type: Sequelize.STRING,
       },
       createdAt: {
         allowNull: false,

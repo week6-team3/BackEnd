@@ -1,4 +1,4 @@
-const { Users, Posts, Checklist } = require('../../models');
+const { Users, Posts, Checklist, Likes } = require('../../models');
 
 class PostRepository {
   // 1. 내가 작성한 게시글 조회
@@ -36,23 +36,39 @@ class PostRepository {
     return myCheckList;
   };
 
+  // 2-2. 로그인한 유저의 해당 게시글 좋아요 상태 확인
+  findMyLike = async (postId) => {
+    const isMyLike = await Likes.findOne({ where: { postId } });
+    return isMyLike;
+  };
+
   // 3. 게시글 작성
-  createPost = async (userId, title, travel, filename, path) => {
+  createPost = async (userId, title, travel) => {
     
-    const newPost = await Posts.create({
-      userId,
-      title,
-      travel,
-      filename,
-      path
-    });
-    console.log(newPost.postId);
-    return newPost;
+    try {
+      console.log('게시글 만든다잉')
+      console.log(typeof travel);
+      const newPost = await Posts.create({
+        userId,
+        title,
+        travel
+      });
+      return newPost;
+    } catch (error) {
+      return error
+    }
   };
 
   // 4. 게시글 수정
   updatePost = async (title, postId) => {
     const [updatePost] = await Posts.update({ title }, { where: { postId: postId } });
+    return updatePost;
+  };
+
+  // Completion 수정
+  updateCompletionPost = async (completion, postId) => {
+    console.log('result com' + completion);
+    const [updatePost] = await Posts.update({ completion }, { where: { postId: postId } });
     return updatePost;
   };
 

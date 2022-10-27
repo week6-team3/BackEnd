@@ -15,7 +15,7 @@ module.exports = async (req, res, next) => {
     // let accessToken = req.cookies.AccessToken;
 
     // authorization 에서 받아온 토큰 값 저장
-    console.log(req.headers);
+    // console.log(req.headers);
     const { authorization } = req.headers;
     const [authType, accessToken] = (authorization || '').split(' ');
     if (!accessToken || authType !== 'Bearer') {
@@ -65,7 +65,6 @@ module.exports = async (req, res, next) => {
 
     // 선생님들께서 사용하실 값
     res.locals.user = { userId };
-
     next();
   } catch (error) {
     console.log(error);

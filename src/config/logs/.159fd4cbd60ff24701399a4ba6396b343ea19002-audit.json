@@ -1,0 +1,15 @@
+{
+    "keep": {
+        "days": false,
+        "amount": 3
+    },
+    "auditLog": "/Users/gwon-yong-gyo/Desktop/workSpace/project/src/config/logs/.159fd4cbd60ff24701399a4ba6396b343ea19002-audit.json",
+    "files": [
+        {
+            "date": 1666854184289,
+            "name": "/Users/gwon-yong-gyo/Desktop/workSpace/project/src/config/logs/2022-10-27.log",
+            "hash": "1b50ffbf848ba841e4c090b45f4a138562efe6fcfaa3f0974bf260c8dd0e2b80"
+        }
+    ],
+    "hashType": "sha256"
+}

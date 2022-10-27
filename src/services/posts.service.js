@@ -16,9 +16,9 @@ class PostService {
           nickname: post.User.nickname,
           email: post.User.email,
           title: post.title,
-          likeCount: post.likeCount,
-          travel: post.travel,
           completion: post.completion,
+          likeCount: post.likeCount,
+          travel: post.travel.toString(),
           sharing: post.sharing,
           createdAt: post.createdAt,
           updatedAt: post.updatedAt,
@@ -37,9 +37,13 @@ class PostService {
     try {
       const existPost = await this.postRepository.findOnePost(postId);
       if (!existPost) throw new Error('존재하지 않는 게시글입니다.');
-      let isMyPost;
+      let isMyPost, isMyLike;
       userId && existPost.userId === userId ? (isMyPost = true) : (isMyPost = false);
       const myCheckList = await this.postRepository.findCheckList(postId);
+
+      let ismyLike = await this.postRepository.findMyLike(postId);
+      ismyLike ? (isMyLike = true) : (isMyLike = false);
+
       return {
         postId: existPost.postId,
         userId: existPost.userId,
@@ -49,7 +53,9 @@ class PostService {
         likeCount: existPost.likeCount,
         travel: existPost.travel,
         sharing: existPost.sharing,
+        completion: existPost.completion,
         isMyPost: isMyPost,
+        isMyLike: isMyLike,
         createdAt: existPost.createdAt,
         updatedAt: existPost.updatedAt,
         checkList: myCheckList,
@@ -61,10 +67,11 @@ class PostService {
   };
 
   // 3. 게시글 작성
-  createPost = async (userId, title, travel, filename, path) => {
+  createPost = async (userId, title, travel) => {
     try {
       
-      const createPost = await this.postRepository.createPost(userId, title, travel, filename, path);
+      const createPost = await this.postRepository.createPost(userId, title, travel);
+      
       const newPost = await this.postRepository.findOnePost(createPost.postId);
 
       // return newPost;
@@ -100,19 +107,16 @@ class PostService {
       if (findOnePostResult.userId !== userId) {
         throw new Error('수정 권한이 없습니다.');
       }
-
       const updatePostResult = await this.postRepository.updatePost(title, postId);
-
       if (updatePostResult) {
         return { message: '수정완료' };
       } else {
-        return { errorMessage: '수정 실패. 관리자에게 문의 부탁드립니다.' };
+        return { errorMessage: '수정 실패. 관리자에게 문의 부탁드립니다. ' };
       }
     } catch (error) {
       return { errorMessage: error.message };
     }
   };
-
   // 게시글 completion 수정
   updateCompletionPost = async (postId, userId) => {
     try {
@@ -124,28 +128,38 @@ class PostService {
       if (findOnePostResult.userId !== userId) {
         throw new Error('수정 권한이 없습니다.');
       }
-      
       const completion = findOnePostResult.completion;
-      if(completion){
+      if (completion) {
         console.log('completion update true -> false');
         updatePostResult = await this.postRepository.updateCompletionPost(!completion, postId);
-      }else{
+      } else {
         console.log('completion update false -> true');
         updatePostResult = await this.postRepository.updateCompletionPost(!completion, postId);
       }
-
-      const result = await this.postRepository.findOnePost(postId);
       
-      if (updatePostResult) {
-        return { message: '수정완료', completion:result.completion,postId:result.postId};
-      } else {
-        return { errorMessage: '수정 실패. 관리자에게 문의 부탁드립니다.' };
-      }
+      const newPost = await this.postRepository.findOnePost(postId);
+
+      // return newPost;
+      return {
+        postId: newPost.postId,
+        userId: newPost.userId,
+        nickname: newPost.User.nickname,
+        email: newPost.User.email,
+        title: newPost.title,
+        likeCount: newPost.likeCount,
+        travel: newPost.travel,
+        completion: newPost.completion,
+        sharing: newPost.sharing,
+        createdAt: newPost.createdAt,
+        updatedAt: newPost.updatedAt,
+        filename: newPost.filename,
+        path: newPost.path
+      };
+
     } catch (error) {
       return { errorMessage: error.message };
     }
   };
-
 
   // 5. 게시글 삭제
   deletePost = async (userId, postId) => {

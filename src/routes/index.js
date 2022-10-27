@@ -9,7 +9,7 @@ const sharingRouter = require('./sharings.routes');
 const checklistRouter = require('./checklist');
 
 router.use('/', userRouter);
-router.use('/', postRouter);
+router.use('/posts', postRouter);
 router.use('/comments', commentRouter);
 router.use('/likes', likeRouter);
 router.use('/sharings', sharingRouter);
