@@ -29,7 +29,7 @@ router.get('/posts', authMiddleware, postsController.findMyPosts);
 router.get('/posts/:postId', sharingMiddleware, postsController.fineOnePost);
 
 // 3. 게시글 작성
-router.post('/posts', authMiddleware, upload.single('img'), postsController.createPost);
+router.post('/posts', authMiddleware, postsController.createPost);
 // router.post('/posts', upload.single('img'), postsController.createPost);
 
 // 4. 게시글 수정

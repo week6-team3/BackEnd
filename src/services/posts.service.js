@@ -89,10 +89,11 @@ class PostService {
     }
   };
 
-  // 4. 게시글 수정
-  updatePost = async (title, travel, postId, userId) => {
+  // 4. 게시글 title 수정
+  updateTitlePost = async (title, postId, userId) => {
     try {
       const findOnePostResult = await this.postRepository.findOnePost(postId);
+
       if (!findOnePostResult) {
         throw new Error('존재하지 않는 게시글입니다.');
       }
@@ -100,8 +101,7 @@ class PostService {
         throw new Error('수정 권한이 없습니다.');
       }
 
-      // const updatePostResult = await this.postRepository.updatePost(title,travel,completion,checklist,postId);
-      const updatePostResult = await this.postRepository.updatePost(title, travel, postId);
+      const updatePostResult = await this.postRepository.updatePost(title, postId);
 
       if (updatePostResult) {
         return { message: '수정완료' };
@@ -112,6 +112,40 @@ class PostService {
       return { errorMessage: error.message };
     }
   };
+
+  // 게시글 completion 수정
+  updateCompletionPost = async (postId, userId) => {
+    try {
+      let updatePostResult;
+      const findOnePostResult = await this.postRepository.findOnePost(postId);
+      if (!findOnePostResult) {
+        throw new Error('존재하지 않는 게시글입니다.');
+      }
+      if (findOnePostResult.userId !== userId) {
+        throw new Error('수정 권한이 없습니다.');
+      }
+      
+      const completion = findOnePostResult.completion;
+      if(completion){
+        console.log('completion update true -> false');
+        updatePostResult = await this.postRepository.updateCompletionPost(!completion, postId);
+      }else{
+        console.log('completion update false -> true');
+        updatePostResult = await this.postRepository.updateCompletionPost(!completion, postId);
+      }
+
+      const result = await this.postRepository.findOnePost(postId);
+      
+      if (updatePostResult) {
+        return { message: '수정완료', completion:result.completion,postId:result.postId};
+      } else {
+        return { errorMessage: '수정 실패. 관리자에게 문의 부탁드립니다.' };
+      }
+    } catch (error) {
+      return { errorMessage: error.message };
+    }
+  };
+
 
   // 5. 게시글 삭제
   deletePost = async (userId, postId) => {
